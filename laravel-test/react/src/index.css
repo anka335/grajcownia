@@ -1,0 +1,10 @@
+body {
+    background-color: #DEF9FF;
+    font-family: 'Dosis';
+}
+@font-face {
+    font-family: 'Dosis';
+    src: url('/fonts/Dosis-VariableFont_wght.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
