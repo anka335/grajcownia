@@ -12,13 +12,22 @@ export default function MainGuestPage(){
     }
 
     return(
-        <div>
-            <img src={Logo} height={50} />
-            <Link to="/login">zaloguj sie</Link>
-            <Link to="/signup">zarejestruj sie</Link>
-            naglowek
-            <Outlet/>
-            <LeftBar/>
+        <div id="GL">
+            <header>
+                <div id="GL_left">
+                    <img src={Logo} height={50} />
+                </div>
+                <div id="GL_right">
+                    <Link to="/login">zaloguj sie</Link>
+                    <Link to="/signup">zarejestruj sie</Link>
+                </div>
+            </header>
+            <section>
+                <LeftBar/>
+                <div id="GL_outlet">
+                    <Outlet/>
+                </div>
+            </section>
         </div>
     )
 }

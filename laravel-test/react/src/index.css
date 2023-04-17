@@ -8,3 +8,63 @@ body {
     font-weight: normal;
     font-style: normal;
 }
+#id {
+    display: flex;
+    align-items: stretch;
+}
+#SP {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    padding-top: 20vh;
+}
+.authentication {
+    text-align: center;
+    padding-top: 20vh;
+}
+form {
+    display: inline-block;
+}
+header {
+    display: flex;
+    flex-direction: row;
+    background-color: #DEF9FF;
+    justify-content: space-between;
+    height: 10vh;
+    width: 100%;
+    align-items: center;
+}
+section {
+    display: flex;
+    flex-direction: row;
+}
+#GL_right > p {
+    padding-left: 20px;
+}
+#GL_leftbar {
+    background-color: blueviolet;
+    width: 10vw;
+    height: 90vh;
+}
+#GL_outlet {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: stretch;
+}
+#GL_outlet > div{
+    height: 90vh;
+    width: 90vw;
+    background-color: green;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+button{
+    width: 100px;
+}

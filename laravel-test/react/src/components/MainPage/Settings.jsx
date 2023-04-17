@@ -2,8 +2,7 @@ export default function Settings(){
     
     return(
         <div>
-            ustawienia
-            <button>wylacz czat</button>
+            <p><button>wylacz czat</button></p>
         </div>
     )
 }

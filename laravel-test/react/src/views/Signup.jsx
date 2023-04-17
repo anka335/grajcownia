@@ -34,25 +34,29 @@ export default function Signup(){
     }
 
     return(
-        <form onSubmit={onSubmit}>
-            <h1 className="title">Signup for free</h1>
+        <div className="authentication">
+            <form onSubmit={onSubmit}>
+                <h1 className="title">Zarejestruj się</h1>
 
-            {/*{errors & <div>
-                {Object.keys(errors).map(key => (
-                    <p key={key}>{errors[key][0]}</p>
-                ))}
-            </div>
-            }*/}
+                {/*{errors & <div>
+                    {Object.keys(errors).map(key => (
+                        <p key={key}>{errors[key][0]}</p>
+                    ))}
+                </div>
+                }*/}
 
-            <input ref={nameRef} placeholder="full name"></input>
-            <input ref={emailRef} placeholder="email"></input>
-            <input ref={passwordRef} placeholder="password"></input>
-            <input ref={passwordConfirmationRef} placeholder="password confirmation"></input>
-            <button className="btn btn-block">Signup</button>
-            <p className="message">
-                <Link to="/login">zaloguj sie</Link>
-                <Link to="/guestlayout/mainguestpage">graj jako gość</Link>
-            </p>
-        </form>
+                <p><input ref={nameRef} placeholder="nazwa użytkownika"></input></p>
+                <p><input ref={emailRef} placeholder="email"></input></p>
+                <p><input ref={passwordRef} placeholder="hasło"></input></p>
+                <p><input ref={passwordConfirmationRef} placeholder="hasło"></input></p>
+                <p><button className="btn btn-block">Wyślij</button></p>
+                <p className="message">
+                    <Link to="/login">zaloguj sie</Link>
+                </p>
+                <p className="message">
+                    <Link to="/guestlayout/mainguestpage">graj jako gość</Link>
+                </p>
+            </form>
+        </div>
     )
 }
