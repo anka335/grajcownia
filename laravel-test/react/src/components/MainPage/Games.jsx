@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom"
+import { StyledLink } from "../../NavStyle";
 
 export default function Games(){
     return(
         <div>
-            <Link to="/guestlayout/wordlerooms">wordle   5 graczy</Link>
-            <Link to="/guestlayout/chessrooms">szachy   5 graczy</Link>
-            <Link to="/guestlayout/checkersrooms">warcaby   5 graczy</Link>
-            <Link to="/guestlayout/battleshiprooms">statki   5 graczy</Link>
+            <StyledLink to="/guestlayout/wordlerooms">wordle   5 graczy</StyledLink>
+            <StyledLink to="/guestlayout/chessrooms">szachy   5 graczy</StyledLink>
+            <StyledLink to="/guestlayout/checkersrooms">warcaby   5 graczy</StyledLink>
+            <StyledLink to="/guestlayout/battleshiprooms">statki   5 graczy</StyledLink>
         </div>
     )
 }

@@ -1,5 +1,4 @@
-import { Link } from "react-router-dom"
-
+import { StyledLink } from "../NavStyle"
 export default function Login(){
 
     const onSubmit = (ev) => {
@@ -14,10 +13,10 @@ export default function Login(){
                 <p><input placeholder="hasło"></input></p>
                 <p><button className="btn btn-block">wyślij</button></p>
                 <p className="message">
-                    <Link to="/signup">zarejestruj sie</Link>
+                    <StyledLink to="/signup">zarejestruj sie</StyledLink>
                 </p>
                 <p className="message">
-                    <Link to="/guestlayout/mainguestpage">graj jako gosc</Link>
+                    <StyledLink to="/guestlayout/mainguestpage">graj jako gosc</StyledLink>
                 </p>
             </form>
         </div>

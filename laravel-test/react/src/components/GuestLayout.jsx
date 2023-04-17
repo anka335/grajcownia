@@ -1,12 +1,13 @@
-import { Link } from "react-router-dom"
 import { Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import LeftBar from "./GuestLayout/LeftBar";
 import Logo from "../assets/LOGO_GRAJCOWNIA.png";
 import styled from "styled-components";
+import { StyledLink } from "../NavStyle";
 
-const StyledLink = styled(Link)`
+const FinalLink = styled(StyledLink)`
   padding: 10px;
+  
 `;
 
 export default function MainGuestPage(){
@@ -23,8 +24,8 @@ export default function MainGuestPage(){
                     <img src={Logo} height={50} />
                 </div>
                 <div id="GL_right">
-                    <StyledLink to="/login" className="GL_link">zaloguj sie</StyledLink>
-                    <StyledLink to="/signup" className="GL_link">zarejestruj sie</StyledLink>
+                    <FinalLink to="/login" className="GL_link">zaloguj sie</FinalLink>
+                    <FinalLink to="/signup" className="GL_link">zarejestruj sie</FinalLink>
                 </div>
             </header>
             <section>

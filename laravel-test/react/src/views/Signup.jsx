@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
 import { useRef, useState } from "react";
 import axiosClient from "../axios-client.js";
 import { useStateContext } from "../contexts/ContextProvider.jsx";
+import { StyledLink } from "../NavStyle.js";
 
 export default function Signup(){
     const nameRef = useRef();
@@ -51,10 +51,10 @@ export default function Signup(){
                 <p><input ref={passwordConfirmationRef} placeholder="hasło"></input></p>
                 <p><button className="btn btn-block">Wyślij</button></p>
                 <p className="message">
-                    <Link to="/login">zaloguj sie</Link>
+                    <StyledLink to="/login">zaloguj sie</StyledLink>
                 </p>
                 <p className="message">
-                    <Link to="/guestlayout/mainguestpage">graj jako gość</Link>
+                    <StyledLink to="/guestlayout/mainguestpage">graj jako gość</StyledLink>
                 </p>
             </form>
         </div>
