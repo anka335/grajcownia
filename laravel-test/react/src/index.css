@@ -40,9 +40,6 @@ section {
     display: flex;
     flex-direction: row;
 }
-#GL_right > p {
-    padding-left: 20px;
-}
 #GL_leftbar {
     background-color: blueviolet;
     width: 10vw;

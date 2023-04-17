@@ -3,6 +3,11 @@ import { Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import LeftBar from "./GuestLayout/LeftBar";
 import Logo from "../assets/LOGO_GRAJCOWNIA.png";
+import styled from "styled-components";
+
+const StyledLink = styled(Link)`
+  padding: 10px;
+`;
 
 export default function MainGuestPage(){
     const {token} = useStateContext()
@@ -18,8 +23,8 @@ export default function MainGuestPage(){
                     <img src={Logo} height={50} />
                 </div>
                 <div id="GL_right">
-                    <Link to="/login">zaloguj sie</Link>
-                    <Link to="/signup">zarejestruj sie</Link>
+                    <StyledLink to="/login" className="GL_link">zaloguj sie</StyledLink>
+                    <StyledLink to="/signup" className="GL_link">zarejestruj sie</StyledLink>
                 </div>
             </header>
             <section>
