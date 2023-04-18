@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import LeftBar from "./GuestLayout/LeftBar";
-import Logo from "../assets/LOGO_GRAJCOWNIA.png";
+import Logo from "../assets/Grajcownia-logo.png";
 import styled from "styled-components";
 import { StyledLink } from "../NavStyle";
 
