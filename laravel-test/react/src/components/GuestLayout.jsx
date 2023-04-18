@@ -3,6 +3,7 @@ import { useStateContext } from "../contexts/ContextProvider";
 import LeftBar from "./GuestLayout/LeftBar";
 import Logo from "../assets/Grajcownia-logo.png";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { StyledLink } from "../NavStyle";
 
 const FinalLink = styled(StyledLink)`
@@ -21,7 +22,7 @@ export default function MainGuestPage(){
         <div id="GL">
             <header>
                 <div id="GL_left">
-                    <img src={Logo} height={50} />
+                    <Link to="/starterpage"><img src={Logo} height={50} /></Link>
                 </div>
                 <div id="GL_right">
                     <FinalLink to="/login" className="GL_link">zaloguj sie</FinalLink>

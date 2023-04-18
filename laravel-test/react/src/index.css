@@ -1,15 +1,41 @@
 body {
     background-color: #CAD2C5;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: x-large;
+    font-size: medium;
     color: #2F3E46;
 }
-/*@font-face {
-    font-family: 'Dosis';
-    src: url('/fonts/Dosis-VariableFont_wght.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}*/
+section {
+    display: flex;
+    flex-direction: row;
+}
+header {
+    display: flex;
+    flex-direction: row;
+    background-color: #CAD2C5;
+    height: 20vh;
+    width: 100%;
+    align-items: center;
+}
+form {
+    display: inline-block;
+}
+button {
+    background-color: #84A98C;
+    border: none;
+    color: #2F3E46;
+    width: 160px;
+    height: 40px;
+    vertical-align: center;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+button:hover {
+    background-color: #52796F;
+    color: white;
+}
 #id {
     display: flex;
     align-items: stretch;
@@ -21,35 +47,49 @@ body {
     justify-items: center;
     align-items: center;
 }
+#SP_header {
+    height: 40vh;
+   justify-content: center;
+}
+#SP_header > img {
+    margin-top: auto
+}
 .authentication {
     text-align: center;
 }
-form {
-    display: inline-block;
-}
-header {
+
+#GL {
     display: flex;
-    flex-direction: row;
-    background-color: #CAD2C5;
-    justify-content: space-between;
-    height: 20vh;
-    width: 100%;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
-section {
-    display: flex;
-    flex-direction: row;
+#GL > header {
+    justify-content: space-between;
 }
 #GL_leftbar {
     background-color: #84A98C;
-    width: 20vw;
+    width: 15vw;
     height: 80vh;
-    
 }
 #GL_leftbar > p {
     padding-top: 20px;
     padding-bottom: 20px;
-    margin-left: 20px;
+}
+#GL_leftbar > hr {
+    background-color: #CAD2C5;
+    border-width: 2px;
+    margin: 0em;
+    padding: 0em;
+}
+#GL_leftbar > ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#GL_leftbar > li {
+    margin: 0;
+    padding: 0;
 }
 #GL_outlet {
     display: flex;
@@ -60,15 +100,14 @@ section {
 }
 #GL_outlet > div{
     height: 80vh;
-    width: 80vw;
+    width: 70vw;
     background-color:#CAD2C5;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
     text-align: center;
-    border: solid #84A98C 2px;
-}
-button{
-    width: 100px;
+    border-top: solid #84A98C 2px;
+    border-right: solid #84A98C 2px;
+    border-bottom: solid #84A98C 2px;
 }
