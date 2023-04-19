@@ -1,8 +1,8 @@
 
 export default function BattleshipRanking(){
     return(
-        <div>
-            statki ranking
+        <div className="div_ranking">
+            TOP 100
         </div>
     )
 }

@@ -51,7 +51,7 @@ export default function Signup(){
                 <p><input ref={passwordConfirmationRef} placeholder="hasło"></input></p>
                 <p><button className="btn btn-block">Wyślij</button></p>
                 <p className="message">
-                    <StyledLink to="/login">zaloguj sie</StyledLink>
+                    <StyledLink to="/login">zaloguj się</StyledLink>
                 </p>
                 <p className="message">
                     <StyledLink to="/guestlayout/mainguestpage">graj jako gość</StyledLink>

@@ -1,8 +1,8 @@
 
 export default function WordleRanking(){
     return(
-        <div>
-            wordle ranking
+        <div className="div_ranking">
+            TOP 100
         </div>
     )
 }

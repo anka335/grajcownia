@@ -13,10 +13,11 @@ export default function LeftBar(){
         <aside id="GL_leftbar">
             <ul>
             <li><FinalLink to="/guestlayout/games">gry</FinalLink></li>
-            <hr/>
+            <div className="GL_line"></div>
             <li><FinalLink to="/guestlayout/ranking">ranking</FinalLink></li>
-            <hr/>
+            <div className="GL_line"></div>
             <li><FinalLink to="/guestlayout/settings">ustawienia</FinalLink></li>
+            <div className="GL_line"></div>
             </ul>
         </aside>
     )

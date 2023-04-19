@@ -1,8 +1,8 @@
 
 export default function ChessRanking(){
     return(
-        <div>
-            szachy ranking
+        <div className="div_ranking">
+            TOP 100
         </div>
     )
 }

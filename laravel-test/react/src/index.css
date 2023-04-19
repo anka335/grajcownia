@@ -8,6 +8,7 @@ section {
     display: flex;
     flex-direction: row;
 }
+
 header {
     display: flex;
     flex-direction: row;
@@ -19,12 +20,20 @@ header {
 form {
     display: inline-block;
 }
+input {
+    width: 100%;
+    padding: 8px;
+    margin: 2px 0;
+    box-sizing: border-box;
+    border: solid #2F3E46 1px;
+  }
 button {
-    background-color: #84A98C;
+    background-color: #52796F;
     border: none;
-    color: #2F3E46;
-    width: 160px;
-    height: 40px;
+    color: #CAD2C5;
+    width: 12vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
     vertical-align: center;
     text-align: center;
     text-decoration: none;
@@ -57,7 +66,6 @@ button:hover {
 .authentication {
     text-align: center;
 }
-
 #GL {
     display: flex;
     flex-direction: column;
@@ -66,21 +74,11 @@ button:hover {
 }
 #GL > header {
     justify-content: space-between;
+    width: 85vw;
 }
 #GL_leftbar {
     background-color: #84A98C;
     width: 15vw;
-    height: 80vh;
-}
-#GL_leftbar > p {
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-#GL_leftbar > hr {
-    background-color: #CAD2C5;
-    border-width: 2px;
-    margin: 0em;
-    padding: 0em;
 }
 #GL_leftbar > ul {
     list-style-type: none;
@@ -91,15 +89,25 @@ button:hover {
     margin: 0;
     padding: 0;
 }
+.GL_line {
+    height: 3px;
+    width: 100%;
+    background-color: #CAD2C5;
+}
+#GL_section {
+    height: 60vh;
+    border: solid #84A98C 3px;
+    border-left: none;
+    border-top: none;
+}
 #GL_outlet {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-content: center;
-    align-items: stretch;
+    border-top: solid #84A98C 3px;
 }
 #GL_outlet > div{
-    height: 80vh;
     width: 70vw;
     background-color:#CAD2C5;
     display: flex;
@@ -107,7 +115,11 @@ button:hover {
     justify-content: center;
     align-content: center;
     text-align: center;
-    border-top: solid #84A98C 2px;
-    border-right: solid #84A98C 2px;
-    border-bottom: solid #84A98C 2px;
+}
+.mainlink {
+    margin-left: 10px;
+}
+.GL_games_span {
+    padding-left: 10vw;
+    color: #52796F;
 }

@@ -7,8 +7,7 @@ import { Link } from "react-router-dom";
 import { StyledLink } from "../NavStyle";
 
 const FinalLink = styled(StyledLink)`
-  padding: 10px;
-  
+  margin-left: 3px;
 `;
 
 export default function MainGuestPage(){
@@ -25,11 +24,11 @@ export default function MainGuestPage(){
                     <Link to="/starterpage"><img src={Logo} height={50} /></Link>
                 </div>
                 <div id="GL_right">
-                    <FinalLink to="/login" className="GL_link">zaloguj sie</FinalLink>
-                    <FinalLink to="/signup" className="GL_link">zarejestruj sie</FinalLink>
+                    <FinalLink to="/login" className="GL_link">zaloguj się</FinalLink>
+                    <FinalLink to="/signup" className="GL_link">zarejestruj się</FinalLink>
                 </div>
             </header>
-            <section>
+            <section id="GL_section">
                 <LeftBar/>
                 <div id="GL_outlet">
                     <Outlet/>
