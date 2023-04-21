@@ -27,10 +27,8 @@ export const StyledLink = styled(ButtonLink)`
 export const MainLink = styled(Link)`
   font-family: Arial, Helvetica, sans-serif;
   font-size: medium;
-  
   background-color: #52796F;
   color: #CAD2C5;
-  
   text-align: center;
   text-decoration: none;
   display: inline-block;
