@@ -155,3 +155,37 @@ button:hover {
     color: white;
     background-color: #52796F;
 }
+.form-inline  {
+    flex-direction: row;
+}
+.form-inline input {
+    width: 20vw;
+    margin-left: 10px;
+}
+#ModifyAccount > div{
+    width: 100%;
+    justify-content: flex-start;
+    justify-items: flex-start;
+    align-items: flex-start;
+}
+.DivesModifyAccount {
+    justify-content: flex-start;
+    justify-items: flex-start;
+    align-items: flex-start;
+}
+#ModifyAccountBtn {
+    background-color: #52796F;
+    border: none;
+    color: #CAD2C5;
+    width: 10vw;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
+    vertical-align: center;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+}
+#ModifyAccountBtn:hover {
+    color: white;
+}
