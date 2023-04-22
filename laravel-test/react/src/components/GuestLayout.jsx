@@ -18,19 +18,19 @@ export default function MainGuestPage(){
     }
 
     return(
-        <div id="GL">
+        <div className="MP">
             <header>
-                <div id="GL_left">
+                <div className="MP_left">
                     <Link to="/starterpage"><img src={Logo} height={50} /></Link>
                 </div>
-                <div id="GL_right">
-                    <FinalLink to="/login" className="GL_link">zaloguj się</FinalLink>
-                    <FinalLink to="/signup" className="GL_link">zarejestruj się</FinalLink>
+                <div className="MP_right">
+                    <FinalLink to="/login" className="MP_link">zaloguj się</FinalLink>
+                    <FinalLink to="/signup" className="MP_link">zarejestruj się</FinalLink>
                 </div>
             </header>
-            <section id="GL_section">
+            <section className="MP_section">
                 <LeftBar/>
-                <div id="GL_outlet">
+                <div className="MP_outlet">
                     <Outlet/>
                 </div>
             </section>

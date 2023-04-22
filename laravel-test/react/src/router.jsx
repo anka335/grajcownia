@@ -2,43 +2,102 @@ import { Navigate, Routes, createBrowserRouter } from "react-router-dom";
 import NotFound from "./views/NotFound.jsx"
 import Login from "./views/Login.jsx";
 import Signup from "./views/Signup.jsx";
-import Users from "./views/Users.jsx";
-import DefaultLayout from "./components/DefaultLayout.jsx";
+import UserLayout from "./components/UserLayout.jsx";
 import GuestLayout from "./components/GuestLayout.jsx";
 import MainGuestPage from "./views/MainGuestPage.jsx";
+import MainUserPage from "./views/MainUserPage.jsx";
 import StarterPage from "./views/StarterPage.jsx";
-import Dashboard from "./views/Dashboard.jsx";
 import StartLayout from "./components/StartLayout.jsx"
-import Games from "./components/MainPage/Games.jsx";
-import Ranking from "./components/MainPage/Ranking.jsx";
-import Settings from "./components/MainPage/Settings.jsx";
-import BattleshipRooms from "./components/MainPage/Games/BattleshipRooms.jsx";
-import CheckersRooms from "./components/MainPage/Games/CheckersRooms.jsx";
-import ChessRooms from "./components/MainPage/Games/ChessRooms.jsx";
-import WordleRooms from "./components/MainPage/Games/WordleRooms.jsx";
-import BattleshipRanking from "./components/MainPage/Ranking/BattleshipRanking.jsx";
-import CheckersRanking from "./components/MainPage/Ranking/CheckersRanking.jsx";
-import ChessRanking from "./components/MainPage/Ranking/ChessRanking.jsx";
-import WordleRanking from "./components/MainPage/Ranking/WordleRanking.jsx";
-
+import Games from "./components/GuestLayout/MainPage/Games.jsx";
+import Ranking from "./components/GuestLayout/MainPage/Ranking.jsx";
+import Settings from "./components/GuestLayout/MainPage/Settings.jsx";
+import BattleshipRooms from "./components/GuestLayout/MainPage/Games/BattleshipRooms.jsx";
+import CheckersRooms from "./components/GuestLayout/MainPage/Games/CheckersRooms.jsx";
+import ChessRooms from "./components/GuestLayout/MainPage/Games/ChessRooms.jsx";
+import WordleRooms from "./components/GuestLayout/MainPage/Games/WordleRooms.jsx";
+import BattleshipRanking from "./components/GuestLayout/MainPage/Ranking/BattleshipRanking.jsx";
+import CheckersRanking from "./components/GuestLayout/MainPage/Ranking/CheckersRanking.jsx";
+import ChessRanking from "./components/GuestLayout/MainPage/Ranking/ChessRanking.jsx";
+import WordleRanking from "./components/GuestLayout/MainPage/Ranking/WordleRanking.jsx";
+import UserSettings from "./components/UserLayout/MainPage/UserSettings.jsx";
+import Stats from "./components/UserLayout/MainPage/Stats.jsx";
+import Friends from "./components/UserLayout/MainPage/Friends.jsx";
+import WhoCanWatch from "./components/UserLayout/MainPage/UserSettings/WhoCanWatch.jsx";
+import ModifyAccount from "./components/UserLayout/MainPage/UserSettings/ModifyAccount.jsx";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <DefaultLayout/>,
+        element: <UserLayout/>,
         children: [
             {
                 path: '/',
-                element: <Navigate to="/users" />
+                element: <Navigate to="/mainuserpage" />
             },
             {
-                path: '/users',
-                element: <Users />
+                path: 'mainuserpage',
+                element: <MainUserPage />
             },
             {
-                path: '/dashboard',
-                element: <Dashboard />
-            }
+                path: '/games',
+                element: <Games />
+            },
+            {
+                path: '/battleshiprooms',
+                element: <BattleshipRooms />
+            },
+            {
+                path: '/checkersrooms',
+                element: <CheckersRooms />
+            },
+            {
+                path: '/chessrooms',
+                element: <ChessRooms />
+            },
+            {
+                path: '/wordlerooms',
+                element: <WordleRooms />
+            },
+            {
+                path: '/ranking',
+                element: <Ranking />
+            },
+            {
+                path: '/battleshipranking',
+                element: <BattleshipRanking />
+            },
+            {
+                path: '/checkersranking',
+                element: <CheckersRanking />
+            },
+            {
+                path: '/chessranking',
+                element: <ChessRanking />
+            },
+            {
+                path: '/wordleranking',
+                element: <WordleRanking />
+            },
+            {
+                path: '/usersettings',
+                element: <UserSettings />
+            },
+            {
+                path: '/whocanwatch',
+                element: <WhoCanWatch />
+            },
+            {
+                path: '/modifyaccount',
+                element: <ModifyAccount />
+            },
+            {
+                path: '/stats',
+                element: <Stats />
+            },
+            {
+                path: '/friends',
+                element: <Friends />
+            },
         ]
     },
     {

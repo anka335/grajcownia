@@ -65,48 +65,48 @@ button:hover {
 .authentication {
     text-align: center;
 }
-#GL {
+.MP {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-#GL > header {
+.MP > header {
     justify-content: space-between;
     width: 85vw;
 }
-#GL_leftbar {
+.MP_leftbar {
     background-color: #84A98C;
     width: 15vw;
 }
-#GL_leftbar > ul {
+.MP_leftbar > ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
-#GL_leftbar > li {
+.MP_leftbar > li {
     margin: 0;
     padding: 0;
 }
-.GL_line {
+.MP_line {
     height: 3px;
     width: 100%;
     background-color: #CAD2C5;
 }
-#GL_section {
+.MP_section {
     height: 60vh;
     border: solid #84A98C 3px;
     border-left: none;
     border-top: none;
 }
-#GL_outlet {
+.MP_outlet {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
     border-top: solid #84A98C 3px;
 }
-#GL_outlet > div{
+.MP_outlet > div{
     width: 70vw;
     background-color:#CAD2C5;
     display: flex;
@@ -118,7 +118,40 @@ button:hover {
 .mainlink {
     margin-left: 10px;
 }
-.GL_games_span {
+.MP_games_span {
     padding-left: 10vw;
     color: #52796F;
+}
+#Outlet_ChatBtn button{
+    width: 20vw;
+}
+#Outlet_PersonalData {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#Outlet_PersonalData label{
+    margin-left: 10px;
+    background-color: #84A98C;
+    border: none;
+    color: #2F3E46;
+    width: 12vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    vertical-align: center;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
+#Outlet_PersonalData input[type="radio"]:checked+label {
+    color: #CAD2C5;
+    background-color: #52796F;
+    display: none;
+}
+#Outlet_PersonalData label:hover {
+    color: white;
+    background-color: #52796F;
 }

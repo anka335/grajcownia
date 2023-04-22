@@ -12,11 +12,11 @@ export default function LeftBar(){
     return(
         <aside className="MP_leftbar">
             <ul>
-            <li><FinalLink to="/guestlayout/games">gry</FinalLink></li>
+            <li><FinalLink to="/games">gry</FinalLink></li>
             <div className="MP_line"></div>
-            <li><FinalLink to="/guestlayout/ranking">ranking</FinalLink></li>
+            <li><FinalLink to="/ranking">ranking</FinalLink></li>
             <div className="MP_line"></div>
-            <li><FinalLink to="/guestlayout/settings">ustawienia</FinalLink></li>
+            <li><FinalLink to="/usersettings">ustawienia</FinalLink></li>
             <div className="MP_line"></div>
             </ul>
         </aside>
