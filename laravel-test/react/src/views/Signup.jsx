@@ -45,10 +45,10 @@ export default function Signup(){
                 </div>
                 }*/}
 
-                <p><input ref={nameRef} placeholder="nazwa użytkownika"></input></p>
-                <p><input ref={emailRef} placeholder="email"></input></p>
-                <p><input ref={passwordRef} placeholder="hasło"></input></p>
-                <p><input ref={passwordConfirmationRef} placeholder="hasło"></input></p>
+                <p><input ref={nameRef} placeholder="nazwa użytkownika" /></p>
+                <p><input ref={emailRef} placeholder="email" /></p>
+                <p><input ref={passwordRef} placeholder="hasło" /></p>
+                <p><input ref={passwordConfirmationRef} placeholder="hasło" /></p>
                 <p><button className="btn btn-block">Wyślij</button></p>
                 <p className="message">
                     <StyledLink to="/login">zaloguj się</StyledLink>

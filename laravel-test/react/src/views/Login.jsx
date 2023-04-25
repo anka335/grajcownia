@@ -9,8 +9,8 @@ export default function Login(){
         <div className="authentication">
             <form onSubmit={onSubmit}>
                 <h1 className="title">Zaloguj się</h1>
-                <p><input placeholder="email"></input></p>
-                <p><input placeholder="hasło"></input></p>
+                <p><input placeholder="email" /></p>
+                <p><input placeholder="hasło" /></p>
                 <p><button className="btn btn-block">wyślij</button></p>
                 <p className="message">
                     <StyledLink to="/signup">zarejestruj się</StyledLink>
