@@ -24,6 +24,7 @@ import Stats from "./components/UserLayout/MainPage/Stats.jsx";
 import Friends from "./components/UserLayout/MainPage/Friends.jsx";
 import WhoCanWatch from "./components/UserLayout/MainPage/UserSettings/WhoCanWatch.jsx";
 import ModifyAccount from "./components/UserLayout/MainPage/UserSettings/ModifyAccount.jsx";
+import Wordle from "./views/Wordle.jsx"
 
 const router = createBrowserRouter([
     {
@@ -109,8 +110,16 @@ const router = createBrowserRouter([
                 element: <Navigate to="/starterpage" />
             },
             {
+                path: '/wordle',
+                element: <Wordle />
+            },
+            {
                 path: '/starterpage',
                 element: <StarterPage />
+            },
+            {
+                path: '/guestlayout',
+                element: <Navigate to="/guestlayout/mainguestpage" />
             },
             {
                 path: '/guestlayout',

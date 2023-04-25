@@ -5,6 +5,7 @@ import Logo from "../assets/Grajcownia-logo.png";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { StyledLink } from "../NavStyle";
+import Header from "./GuestLayout/Header";
 
 const FinalLink = styled(StyledLink)`
   margin-left: 3px;
@@ -19,15 +20,7 @@ export default function MainGuestPage(){
 
     return(
         <div className="MP">
-            <header>
-                <div className="MP_left">
-                    <Link to="/starterpage"><img src={Logo} height={50} /></Link>
-                </div>
-                <div className="MP_right">
-                    <FinalLink to="/login" className="MP_link">zaloguj się</FinalLink>
-                    <FinalLink to="/signup" className="MP_link">zarejestruj się</FinalLink>
-                </div>
-            </header>
+            <Header />
             <section className="MP_section">
                 <LeftBar/>
                 <div className="MP_outlet">
