@@ -25,6 +25,7 @@ import Friends from "./components/UserLayout/MainPage/Friends.jsx";
 import WhoCanWatch from "./components/UserLayout/MainPage/UserSettings/WhoCanWatch.jsx";
 import ModifyAccount from "./components/UserLayout/MainPage/UserSettings/ModifyAccount.jsx";
 import Wordle from "./views/Wordle.jsx"
+import Checkers from "./views/Checkers.jsx";
 
 const router = createBrowserRouter([
     {
@@ -112,6 +113,10 @@ const router = createBrowserRouter([
             {
                 path: '/wordle',
                 element: <Wordle />
+            },
+            {
+                path: '/checkers',
+                element: <Checkers />
             },
             {
                 path: '/starterpage',

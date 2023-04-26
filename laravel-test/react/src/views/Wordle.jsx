@@ -22,6 +22,7 @@ export default function Wordle(){
                     <div className="wordle_row"> <div></div><div></div><div></div><div></div><div></div> </div>
                     <div className="wordle_row"> <div></div><div></div><div></div><div></div><div></div> </div>
                 </main>
+                <div id="wordle_empty"></div>
                 <Chat />
             </section>
         </div>

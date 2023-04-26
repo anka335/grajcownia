@@ -199,7 +199,7 @@ button:hover {
     justify-content: center;
 }
 #wordle_main {
-    width: 54vh;
+    width: 28vw;
     height: 60vh;
     display: flex;
     flex-direction: column;
@@ -223,20 +223,24 @@ button:hover {
     display: flex;
     flex-direction: row;
 }
+#wordle_empty {
+    height: 100%;
+    width: 8.8vw;
+}
 #chat {
     width: 25vw;
     height: 70vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #84A98C;
-    margin-left: 8vw;
+    background-color:#84A98C;
 }
 #chat_box {
     background-color: #FBFFF7;
     width: 20vw;
     height: 30vh;
     margin-top: 10px;
+    margin-bottom: 0;
     border: solid #52796F 3px;
 }
 #chat_close {
@@ -267,15 +271,16 @@ button:hover {
     background-color: #FBFFF7;
 }
 #chat form {
-    height: 5vh;
-    width: 20vw;
+    width: 20.2vw;
     display: flex;
     flex-direction: row;
+    justify-content: stretch;
 }
 #chat input[type="text"] {
     height: 5vh;
     width: 80%;
     background-color: #FBFFF7;
+    border: solid #52796F 3px;
 }
 #chat input[type="button"]{
     height: 5vh;
@@ -283,6 +288,8 @@ button:hover {
     background-color: #52796F;
     color: #CAD2C5;
     transition-duration: 0.4s;
+    border: solid #52796F 3px;
+    border-left: none;
 }
 #chat input[type="button"]:hover{
     color: white;
