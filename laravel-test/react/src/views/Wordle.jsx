@@ -5,13 +5,10 @@ export default function Wordle(){
     return(
         <div className="MP">
             <Header />
-            <section id="wordle_section">
-                <aside id="wordle_win">
+            <section id="game_section">
+                <aside id="game_win">
                     <div>
-                        ANKA335: 1 WYGRANA
-                    </div>
-                    <div>
-                        ANKA323: 3 WYGRANE
+                        zuzyte litery
                     </div>
                 </aside>
                 <main id="wordle_main">
@@ -22,7 +19,6 @@ export default function Wordle(){
                     <div className="wordle_row"> <div></div><div></div><div></div><div></div><div></div> </div>
                     <div className="wordle_row"> <div></div><div></div><div></div><div></div><div></div> </div>
                 </main>
-                <div id="wordle_empty"></div>
                 <Chat />
             </section>
         </div>

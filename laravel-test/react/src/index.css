@@ -185,13 +185,14 @@ button:hover {
 #ModifyAccountBtn:hover {
     color: white;
 }
-#wordle_section {
-    width: 100%;
+#game_section {
+    width: 85vw;
     height: 70vh;
     display: flex;
+    justify-content: space-between;
 }
-#wordle_win {
-    width: 30vw;
+#game_win {
+    width: 20vw;
     height: 60%;
     display: flex;
     flex-direction: column;
@@ -223,9 +224,55 @@ button:hover {
     display: flex;
     flex-direction: row;
 }
-#wordle_empty {
+#checkers_main {
+    border: solid #84A98C 2px;
+    width: 64vh;
+    height: 64vh;
+    display: flex;
+    flex-direction: column;
+}
+.chess_row {
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    flex-direction: row;
+}
+.chess_row > div {
+    width: 8vh;
     height: 100%;
-    width: 8.8vw;
+}
+.chess_row:nth-child(2n) > div:nth-child(2n){
+    background-color: #CAD2C5;
+}
+.chess_row:nth-child(2n) > div:nth-child(2n+1){
+    background-color: #84A98C;
+}
+.chess_row:nth-child(2n+1) > div:nth-child(2n+1){
+    background-color: #CAD2C5;
+}
+.chess_row:nth-child(2n+1) > div:nth-child(2n){
+    background-color: #84A98C;
+}
+.battleship_main {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 37vh;
+    height: 32vh;
+    border-right: solid #84A98C 2px;
+    border-bottom: solid #84A98C 2px;
+}
+.battleship_row {
+    width: 32vh;
+    height: 3.2vh;
+    display: flex;
+    flex-direction: row;
+}
+.battleship_row > div {
+    width: 3.2vh;
+    height: 100%;
+    border-left: solid #84A98C 2px;
+    border-top: solid #84A98C 2px;
 }
 #chat {
     width: 25vw;

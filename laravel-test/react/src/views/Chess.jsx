@@ -1,7 +1,7 @@
 import Header from "../components/GuestLayout/Header"
 import Chat from "../components/Games/Chat"
 
-export default function Checkers(){
+export default function Chess(){
     return(
         <div className="MP">
             <Header />

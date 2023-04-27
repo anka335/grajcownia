@@ -26,6 +26,8 @@ import WhoCanWatch from "./components/UserLayout/MainPage/UserSettings/WhoCanWat
 import ModifyAccount from "./components/UserLayout/MainPage/UserSettings/ModifyAccount.jsx";
 import Wordle from "./views/Wordle.jsx"
 import Checkers from "./views/Checkers.jsx";
+import Chess from "./views/Chess.jsx";
+import Battleship from "./views/Battleship.jsx";
 
 const router = createBrowserRouter([
     {
@@ -117,6 +119,14 @@ const router = createBrowserRouter([
             {
                 path: '/checkers',
                 element: <Checkers />
+            },
+            {
+                path: '/chess',
+                element: <Chess />
+            },
+            {
+                path: '/battleship',
+                element: <Battleship />
             },
             {
                 path: '/starterpage',
