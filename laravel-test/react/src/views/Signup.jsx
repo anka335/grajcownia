@@ -1,55 +1,61 @@
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 import { useRef, useState } from "react";
-import axiosClient from "../axios-client.js";
-import { useStateContext } from "../contexts/ContextProvider.jsx";
 import { StyledLink } from "../NavStyle.js";
+import passwordValidator from 'password-validator';
+import { validate } from 'email-validator';
+import { auth } from '../firebase.jsx';
+
+const schema_pw = new passwordValidator();
+
+schema_pw
+    .is().min(6)                                    // Minimum length 8
+    .is().max(20)                                  // Maximum length 100
+    .has().uppercase()                              // Must have uppercase letters
+    .has().lowercase()                              // Must have lowercase letters
+    .has().not().spaces()                           // Should not have spaces
 
 export default function Signup(){
-    const nameRef = useRef();
-    const emailRef = useRef();
-    const passwordRef = useRef();
-    const passwordConfirmationRef = useRef();
-    const [errors, setErrors] = useState(null);
-    const {setUser, setToken} = useStateContext()
+    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
+    const [nick, setNick] = useState('');
 
-    const onSubmit = (ev) => {
-        ev.preventDefault()
-        const payload = {
-            name: nameRef.current.value,
-            email: emailRef.current.value,
-            password: passwordRef.current.value,
-            password_confirmation: passwordConfirmationRef.current.value,
-        }
-        axiosClient.post('/signup', payload)
-        .then(({data}) => {
-            setUser(data.user)
-            setToken(data.token)
-        })
-        .catch(err => {
-            const response = err.response;
-            if (response && response.status == 422) {
-                console.log(response.data.errors);
-                setErrors(response.data.errors)
+    function handleSubmit(event) {
+        event.preventDefault();
+      
+        if (schema_pw.validate(password)) {
+            if (validate(email)){
+                firebase.auth().createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in 
+                    var user = userCredential.user;
+                    user.updateProfile({
+                        displayName: nick
+                    })
+                    // ...
+                    console.log(event);
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // ..
+                });
+            } else {
+                alert("email jest niepoprawny");
             }
-        })
+        } else {
+            alert("Hasło musi zawierać minimum 6 znaków, w tym małe i duże litery oraz nie może zawierać spacji");
+        }
     }
 
     return(
         <div className="authentication">
-            <form onSubmit={onSubmit}>
+            <form onSubmit={handleSubmit} name='registration_form'>
                 <h1 className="title">Zarejestruj się</h1>
-
-                {/*{errors & <div>
-                    {Object.keys(errors).map(key => (
-                        <p key={key}>{errors[key][0]}</p>
-                    ))}
-                </div>
-                }*/}
-
-                <p><input ref={nameRef} placeholder="nazwa użytkownika" /></p>
-                <p><input ref={emailRef} placeholder="email" /></p>
-                <p><input ref={passwordRef} placeholder="hasło" /></p>
-                <p><input ref={passwordConfirmationRef} placeholder="hasło" /></p>
-                <p><button className="btn btn-block">Wyślij</button></p>
+                <p><input placeholder="nazwa użytkownika" value={nick} onChange={(e) => setNick(e.target.value)}/></p>
+                <p><input placeholder="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}/></p>
+                <p><input placeholder="hasło" type="password" value={password} onChange={(e) => setPassword(e.target.value)} /></p>
+                <p><button className="btn btn-block" type="submit">Wyślij</button></p>
                 <p className="message">
                     <StyledLink to="/login">zaloguj się</StyledLink>
                 </p>
