@@ -1,23 +1,37 @@
 import { Link, Navigate, Outlet } from "react-router-dom"
-import { useStateContext } from "../contexts/ContextProvider"
+//import { useStateContext } from "../contexts/ContextProvider"
 import LeftBar from "./UserLayout/LeftBar";
 import Logo from "../assets/Grajcownia-logo.png"
 import styled from "styled-components";
 import { StyledLink } from "../NavStyle";
-
+import 'firebase/compat/auth';
+import { useNavigate } from 'react-router-dom';
+import { UserAuth } from "../contexts/AuthContext";
 const FinalLink = styled(StyledLink)`
     margin-left: 30px;
 `;
 
-export default function DefaultLayout(){
-    const {user, token} = useStateContext()
+export default function DefaultLayout() {
 
-    if (!token){
-        return <Navigate to="/starterpage"/>
-    }
+    /*function onLogout() {
+      firebase.auth().signOut().then(() => {
+        console.log("wylogowany");
+      }).catch((error) => {
+        console.log("error logout");
+      });
+    }*/
 
-    const onLogout = (ev) => {
-        ev.preventDefault()
+    const { user, logout } = UserAuth();
+    const navigate = useNavigate();
+
+    const onLogout = async () => {
+        try {
+            await logout();
+            navigate('/starterpage');
+            console.log('You are logged out')
+        } catch (e) {
+            console.log(e.message);
+        }
     }
 
     return (
@@ -27,7 +41,7 @@ export default function DefaultLayout(){
                 <Link to="/mainuserpage"><img src={Logo} height={50} /></Link>
             </div>
             <div className="MP_right">
-                {user.name}
+                
                 <FinalLink to="#" onClick={onLogout}>Wyloguj się</FinalLink>
             </div>
         </header>

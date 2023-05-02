@@ -28,11 +28,13 @@ import Wordle from "./views/Wordle.jsx"
 import Checkers from "./views/Checkers.jsx";
 import Chess from "./views/Chess.jsx";
 import Battleship from "./views/Battleship.jsx";
+import ProtectedGuestRoute from "./ProtectedRoutes/ProtectedGuestRoute.jsx";
+import ProtectedUserRoute from "./ProtectedRoutes/ProtectedUserRoute.jsx";
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <UserLayout/>,
+        element: <ProtectedUserRoute><UserLayout/></ProtectedUserRoute>,
         children: [
             {
                 path: '/',
@@ -106,7 +108,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <StartLayout/>,
+        element: <ProtectedGuestRoute><StartLayout/></ProtectedGuestRoute>,
         children: [
             {
                 path: '/',

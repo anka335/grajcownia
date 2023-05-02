@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useStateContext } from "../contexts/ContextProvider";
+//import { useStateContext } from "../contexts/ContextProvider";
 import LeftBar from "./GuestLayout/LeftBar";
 import Logo from "../assets/Grajcownia-logo.png";
 import styled from "styled-components";
@@ -12,11 +12,11 @@ const FinalLink = styled(StyledLink)`
 `;
 
 export default function MainGuestPage(){
-    const {token} = useStateContext()
+    /*const {token} = useStateContext()
 
     if (token) {
         return <Navigate to="/" />
-    }
+    }*/
 
     return(
         <div className="MP">

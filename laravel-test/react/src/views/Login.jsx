@@ -1,43 +1,51 @@
-import React, { Component } from 'react';
-import firebase from 'firebase/compat/app';
-import * as firebaseui from 'firebaseui';
+import React, { useState } from 'react';
 import 'firebaseui/dist/firebaseui.css';
 import { StyledLink } from "../NavStyle";
-import { useState } from 'react';
+import UserLayout from "../components/UserLayout";
+import MainUserPage from "../views/MainUserPage.jsx"
+import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { UserAuth } from '../contexts/AuthContext';
 
-export default function Login(){
+export default function Login() {
+    /*const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [loggedIn, setLoggedIn] = useState(false);
-
-    firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          // User is signed in, see docs for a list of available properties
-          // https://firebase.google.com/docs/reference/js/firebase.User
-          var uid = user.uid;
-          // ...
-        } else {
-          // User is signed out
-          // ...
-        }
-    });
+    AuthState();
 
     function handleSubmit(event) {
-        event.preventDefault();
-        firebase.auth().signInWithEmailAndPassword(email, password)
+      event.preventDefault();
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
-            // Signed in
-            var user = userCredential.user;
-            setLoggedIn(true);
-            // ...
+          // Signed in
+          var user = userCredential.user;
+          setLoggedIn(true);
         })
         .catch((error) => {
-            var errorCode = error.code;
-            var errorMessage = error.message;
+          var errorCode = error.code;
+          var errorMessage = error.message;
         });
+    }*/
 
-    }
+      const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+      const [error, setError] = useState('');
+      const navigate = useNavigate();
+      const { signIn } = UserAuth();
+    
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('')
+        try {
+          await signIn(email, password)
+          navigate('/mainuserpage')
+        } catch (e) {
+          setError(e.message)
+          console.log(e.message)
+        }
+      };
 
     return(
         <div className="authentication">
@@ -54,5 +62,5 @@ export default function Login(){
                 </p>
             </form>
         </div>
-    )
+        )
 }
