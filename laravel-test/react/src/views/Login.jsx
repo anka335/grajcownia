@@ -49,7 +49,7 @@ export default function Login() {
                     <StyledLink to="/signup">zarejestruj się</StyledLink>
                 </p>
                 <p className="message">
-                  <button onClick={onAnonymous}>graj jako gość</button>
+                  <button onClick={onAnonymous} className='light-button'>graj jako gość</button>
                 </p>
             </form>
         </div>

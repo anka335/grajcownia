@@ -43,7 +43,7 @@ export default function Header(){
                 <Link to="/starterpage"><img src={Logo} height={50} /></Link>
             </div>
             <div className="MP_right">
-                <button onClick={handleSubmit}>zaloguj sie/zarejestruj sie</button>
+                <button onClick={handleSubmit} className="sign-button">zaloguj się / zarejestruj się</button>
             </div>
         </header>
     )

@@ -37,7 +37,7 @@ export default function MainPage(){
                 <hr/>
                 <FinalLink to="/login">zaloguj się</FinalLink>
                 <hr/>
-                <button onClick={handleSubmit}>graj jako gość</button>
+                <button onClick={handleSubmit} className="light-button">graj jako gość</button>
             </section>
         </div>
     )

@@ -41,6 +41,28 @@ button {
     font-size: 16px;
     transition-duration: 0.4s;
 }
+.light-button {
+    font-family: Arial, Helvetica, sans-serif;
+  font-size: medium;
+  background-color: #84A98C;
+  border: none;
+  color: #2F3E46;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  transition-duration: 0.4s;
+  margin: 0;
+  padding: 0;
+  width: 12vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  margin-left: 4px;
+}
+.light-button:hover {
+    transition-duration: 0.4s;
+    background-color: #52796F;
+    color: white;
+}
 button:hover {
     color: white;
 }
@@ -74,6 +96,9 @@ button:hover {
 .MP > header {
     justify-content: space-between;
     width: 85vw;
+}
+.sign-button {
+    width: 220px;
 }
 .MP_leftbar {
     background-color: #84A98C;
