@@ -2,15 +2,15 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
 
-const ProtectedGuestRoute = ({ children }) => {
+const ProtectedAnonUserRoute = ({ children }) => {
   const { user } = UserAuth();
 
   if (user && !(user?.isAnonymous)) {
     return <Navigate to='/mainuserpage' />;
-  } else if (user && user?.isAnonymous) {
-    return <Navigate to='/guestlayout/mainguestpage' />;
+  } else if (!user) {
+    return <Navigate to='/starterpage' />;
   }
   return children;
 };
 
-export default ProtectedGuestRoute;
+export default ProtectedAnonUserRoute;

@@ -1,5 +1,4 @@
 import { Link, Navigate, Outlet } from "react-router-dom"
-//import { useStateContext } from "../contexts/ContextProvider"
 import LeftBar from "./UserLayout/LeftBar";
 import Logo from "../assets/Grajcownia-logo.png"
 import styled from "styled-components";
@@ -12,14 +11,6 @@ const FinalLink = styled(StyledLink)`
 `;
 
 export default function DefaultLayout() {
-
-    /*function onLogout() {
-      firebase.auth().signOut().then(() => {
-        console.log("wylogowany");
-      }).catch((error) => {
-        console.log("error logout");
-      });
-    }*/
 
     const { user, logout } = UserAuth();
     const navigate = useNavigate();

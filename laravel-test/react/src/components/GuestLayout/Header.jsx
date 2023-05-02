@@ -4,17 +4,38 @@ import Logo from "../../assets/Grajcownia-logo.png"
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { StyledLink } from "../../NavStyle";
+import { useNavigate } from "react-router-dom";
+import { UserAuth } from "../../contexts/AuthContext";
 
 const FinalLink = styled(StyledLink)`
   margin-left: 3px;
 `;
 
 export default function Header(){
-   /* const {token} = useStateContext()
+   
+    const { user, logout } = UserAuth();
+    const navigate = useNavigate();
 
-    if (token) {
-        return <Navigate to="/" />
-    }*/
+    const handleSubmit = async () => {
+        try {
+            await logout();
+            navigate('/login');
+            console.log('You are logged out from anonymous account')
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+
+    const registerSubmit = async () => {
+        try {
+            await logout();
+            navigate('/signup');
+            console.log('You are logged out from anonymous account')
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+
 
     return(
         <header>
@@ -22,8 +43,7 @@ export default function Header(){
                 <Link to="/starterpage"><img src={Logo} height={50} /></Link>
             </div>
             <div className="MP_right">
-                <FinalLink to="/login" className="MP_link">zaloguj się</FinalLink>
-                <FinalLink to="/signup" className="MP_link">zarejestruj się</FinalLink>
+                <button onClick={handleSubmit}>zaloguj sie/zarejestruj sie</button>
             </div>
         </header>
     )

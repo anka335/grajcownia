@@ -30,6 +30,7 @@ import Chess from "./views/Chess.jsx";
 import Battleship from "./views/Battleship.jsx";
 import ProtectedGuestRoute from "./ProtectedRoutes/ProtectedGuestRoute.jsx";
 import ProtectedUserRoute from "./ProtectedRoutes/ProtectedUserRoute.jsx";
+import ProtectedAnonUserRoute from "./ProtectedRoutes/ProtectedAnonUserRoute.jsx";
 
 const router = createBrowserRouter([
     {
@@ -115,6 +116,28 @@ const router = createBrowserRouter([
                 element: <Navigate to="/starterpage" />
             },
             {
+                path: '/starterpage',
+                element: <StarterPage />
+            },
+            {
+                path: '/login',
+                element: <Login />
+            },
+            {
+                path: '/signup',
+                element: <Signup />
+            }
+        ]
+    },
+    {
+        path: '/',
+        element: <ProtectedAnonUserRoute><StartLayout/></ProtectedAnonUserRoute>,
+        children: [
+            {
+                path: '/',
+                element: <Navigate to="/guestlayout/mainguestpage" />
+            },
+            {
                 path: '/wordle',
                 element: <Wordle />
             },
@@ -129,10 +152,6 @@ const router = createBrowserRouter([
             {
                 path: '/battleship',
                 element: <Battleship />
-            },
-            {
-                path: '/starterpage',
-                element: <StarterPage />
             },
             {
                 path: '/guestlayout',
@@ -192,14 +211,6 @@ const router = createBrowserRouter([
                     },
                 ]
             },
-            {
-                path: '/login',
-                element: <Login />
-            },
-            {
-                path: '/signup',
-                element: <Signup />
-            }
         ]
     },
     

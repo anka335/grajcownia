@@ -1,39 +1,17 @@
 import React, { useState } from 'react';
 import 'firebaseui/dist/firebaseui.css';
 import { StyledLink } from "../NavStyle";
-import UserLayout from "../components/UserLayout";
-import MainUserPage from "../views/MainUserPage.jsx"
-import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
 
 export default function Login() {
-    /*const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    AuthState();
-
-    function handleSubmit(event) {
-      event.preventDefault();
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-          // Signed in
-          var user = userCredential.user;
-          setLoggedIn(true);
-        })
-        .catch((error) => {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-        });
-    }*/
 
       const [email, setEmail] = useState('');
       const [password, setPassword] = useState('');
       const [error, setError] = useState('');
       const navigate = useNavigate();
       const { signIn } = UserAuth();
+      const { anonymousSignIn } = UserAuth();
     
       const handleSubmit = async (e) => {
         e.preventDefault();
@@ -41,11 +19,24 @@ export default function Login() {
         try {
           await signIn(email, password)
           navigate('/mainuserpage')
+          console.log('You are logged in')
         } catch (e) {
           setError(e.message)
           console.log(e.message)
         }
       };
+      const onAnonymous = async (e) => {
+        e.preventDefault();
+        setError('')
+        try {
+          await anonymousSignIn()
+          navigate('/guestlayout/mainguestpage')
+          console.log('You are logged in anonymously')
+        } catch (e) {
+          setError(e.message)
+          console.log(e.message)
+        }
+    }
 
     return(
         <div className="authentication">
@@ -58,7 +49,7 @@ export default function Login() {
                     <StyledLink to="/signup">zarejestruj się</StyledLink>
                 </p>
                 <p className="message">
-                    <StyledLink to="/guestlayout/mainguestpage">graj jako gość</StyledLink>
+                  <button onClick={onAnonymous}>graj jako gość</button>
                 </p>
             </form>
         </div>

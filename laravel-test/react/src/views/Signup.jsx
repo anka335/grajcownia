@@ -4,7 +4,8 @@ import { useRef, useState } from "react";
 import { StyledLink } from "../NavStyle.js";
 import passwordValidator from 'password-validator';
 import { validate } from 'email-validator';
-import { auth } from '../firebase.jsx';
+import { UserAuth } from '../contexts/AuthContext.jsx';
+import { useNavigate } from 'react-router-dom';
 
 const schema_pw = new passwordValidator();
 
@@ -16,9 +17,13 @@ schema_pw
     .has().not().spaces()                           // Should not have spaces
 
 export default function Signup(){
+
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [nick, setNick] = useState('');
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+    const { anonymousSignIn } = UserAuth();
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -46,6 +51,18 @@ export default function Signup(){
         } else {
             alert("Hasło musi zawierać minimum 6 znaków, w tym małe i duże litery oraz nie może zawierać spacji");
         }
+    };
+    const onAnonymous = async (e) => {
+        e.preventDefault();
+        setError('')
+        try {
+          await anonymousSignIn()
+          navigate('/guestlayout/mainguestpage')
+          console.log('You are logged in anonymously')
+        } catch (e) {
+          setError(e.message)
+          console.log(e.message)
+        }
     }
 
     return(
@@ -60,7 +77,7 @@ export default function Signup(){
                     <StyledLink to="/login">zaloguj się</StyledLink>
                 </p>
                 <p className="message">
-                    <StyledLink to="/guestlayout/mainguestpage">graj jako gość</StyledLink>
+                    <button onClick={onAnonymous}>graj jako gość</button>
                 </p>
             </form>
         </div>
