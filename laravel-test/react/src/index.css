@@ -156,7 +156,7 @@ button:hover {
     justify-content: center;
     align-items: center;
 }
-#Outlet_PersonalData label{
+#Outlet_PersonalData .unselected{
     margin-left: 10px;
     background-color: #84A98C;
     border: none;
@@ -171,15 +171,22 @@ button:hover {
     font-size: 16px;
     transition-duration: 0.4s;
 }
-#Outlet_PersonalData input[type="radio"]:checked ~ label {
+#Outlet_PersonalData .selected {
     color: #CAD2C5;
     background-color: #52796F;
-    display: none;
+    margin-left: 10px;
+    border: none;
+    width: 12vw;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    vertical-align: center;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
 }
-#Outlet_PersonalData input[type="radio"]:checked {
-    display: none;
-}
-.form-inline  {
+.form-inline  {/*nie wiem co to*/
     flex-direction: row;
 }
 .form-inline input {
@@ -249,6 +256,26 @@ button:hover {
     display: flex;
     flex-direction: row;
 }
+#chess_main {
+    
+}
+#chess_main .even {
+    background-color: #CAD2C5;
+}
+#chess_main .odd {
+    background-color: #84A98C;
+}
+#chess_main tr{
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    flex-direction: row;
+}
+#chess_main td {
+    width: 8vh;
+    height: 100%;
+}
+/*to warcaby*/
 #checkers_main {
     border: solid #84A98C 2px;
     width: 64vh;

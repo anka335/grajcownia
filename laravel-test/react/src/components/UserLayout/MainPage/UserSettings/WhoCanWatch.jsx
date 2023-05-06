@@ -9,7 +9,7 @@ export default function PersonalData(){
     return (
         <div id="Outlet_PersonalData">
           <form>
-            <label>
+            <label className={selectedOption === "wszyscy" ? "selected" : "unselected"}>
               wszyscy
               <input
                 type="radio"
@@ -20,7 +20,7 @@ export default function PersonalData(){
                 onChange={handleOptionChange}
               />
             </label>
-            <label>
+            <label className={selectedOption === "znajomi" ? "selected" : "unselected"}>
               moi znajomi
               <input
                 type="radio"
@@ -31,7 +31,7 @@ export default function PersonalData(){
                 onChange={handleOptionChange}
               />
             </label>
-            <label>
+            <label className={selectedOption === "nikt" ? "selected" : "unselected"}>
               nikt
               <input
                 type="radio"
