@@ -105,6 +105,22 @@ const router = createBrowserRouter([
                 path: '/friends',
                 element: <Friends />
             },
+            {
+                path: '/wordle',
+                element: <Wordle />
+            },
+            {
+                path: '/checkers',
+                element: <Checkers />
+            },
+            {
+                path: '/chess',
+                element: <Chess />
+            },
+            {
+                path: '/battleship',
+                element: <Battleship />
+            }
         ]
     },
     {
@@ -126,7 +142,7 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <Signup />
-            }
+            },
         ]
     },
     {
@@ -136,22 +152,6 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Navigate to="/guestlayout/mainguestpage" />
-            },
-            {
-                path: '/wordle',
-                element: <Wordle />
-            },
-            {
-                path: '/checkers',
-                element: <Checkers />
-            },
-            {
-                path: '/chess',
-                element: <Chess />
-            },
-            {
-                path: '/battleship',
-                element: <Battleship />
             },
             {
                 path: '/guestlayout',
