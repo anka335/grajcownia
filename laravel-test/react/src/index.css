@@ -186,6 +186,9 @@ button:hover {
     font-size: 16px;
     transition-duration: 0.4s;
 }
+#Outlet_PersonalData input[type="radio"] {
+    display: none;
+}
 .form-inline  {/*nie wiem co to*/
     flex-direction: row;
 }
@@ -255,9 +258,6 @@ button:hover {
     text-align: center;
     display: flex;
     flex-direction: row;
-}
-#chess_main {
-    
 }
 #chess_main .even {
     background-color: #CAD2C5;

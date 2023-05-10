@@ -5,9 +5,11 @@ import { UserAuth } from '../contexts/AuthContext';
 const ProtectedGuestRoute = ({ children }) => {
   const { user } = UserAuth();
 
-  if (user && !(user?.isAnonymous)) {
+  if (user) {
+    console.log("start (user)");
     return <Navigate to='/mainuserpage' />;
-  } else if (user && user?.isAnonymous) {
+  } else if (user?.isAnonymous) {
+    console.log("start (anonymous)");
     return <Navigate to='/guestlayout/mainguestpage' />;
   }
   return children;

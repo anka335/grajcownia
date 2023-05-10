@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 //import { useStateContext } from "../contexts/ContextProvider";
 
-export default function StartLayout(){
+export default function MainGuestLayout(){
     /* {token} = useStateContext()
 
     if (token) {

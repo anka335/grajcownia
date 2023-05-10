@@ -6,8 +6,10 @@ const ProtectedUserRoute = ({ children }) => {
   const { user } = UserAuth();
 
   if (!user) {
+    console.log("user (!user)");
     return <Navigate to='/starterpage' />;
   } else if (user?.isAnonymous) {
+    console.log("user (anonymous)")
     return <Navigate to='/guestlayout/mainguestpage' />;
   }
   return children;

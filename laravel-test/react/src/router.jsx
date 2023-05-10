@@ -8,18 +8,21 @@ import MainGuestPage from "./views/MainGuestPage.jsx";
 import MainUserPage from "./views/MainUserPage.jsx";
 import StarterPage from "./views/StarterPage.jsx";
 import StartLayout from "./components/StartLayout.jsx"
+import MainGuestLayout from "./components/StartAnonLayout.jsx";
 import Games from "./components/GuestLayout/MainPage/Games.jsx";
 import Ranking from "./components/GuestLayout/MainPage/Ranking.jsx";
 import Settings from "./components/GuestLayout/MainPage/Settings.jsx";
-import BattleshipRooms from "./components/GuestLayout/MainPage/Games/BattleshipRooms.jsx";
-import CheckersRooms from "./components/GuestLayout/MainPage/Games/CheckersRooms.jsx";
-import ChessRooms from "./components/GuestLayout/MainPage/Games/ChessRooms.jsx";
-import WordleRooms from "./components/GuestLayout/MainPage/Games/WordleRooms.jsx";
-import BattleshipRanking from "./components/GuestLayout/MainPage/Ranking/BattleshipRanking.jsx";
-import CheckersRanking from "./components/GuestLayout/MainPage/Ranking/CheckersRanking.jsx";
-import ChessRanking from "./components/GuestLayout/MainPage/Ranking/ChessRanking.jsx";
-import WordleRanking from "./components/GuestLayout/MainPage/Ranking/WordleRanking.jsx";
+import UserGames from "./components/UserLayout/MainPage/Games.jsx";
+import UserRanking from "./components/UserLayout/MainPage/Ranking.jsx";
 import UserSettings from "./components/UserLayout/MainPage/UserSettings.jsx";
+import BattleshipRooms from "./components/Default/Games/BattleshipRooms.jsx";
+import CheckersRooms from "./components/Default/Games/CheckersRooms.jsx";
+import ChessRooms from "./components/Default/Games/ChessRooms.jsx";
+import WordleRooms from "./components/Default/Games/WordleRooms.jsx";
+import BattleshipRanking from "./components/Default/Ranking/BattleshipRanking.jsx";
+import CheckersRanking from "./components/Default/Ranking/CheckersRanking.jsx";
+import ChessRanking from "./components/Default/Ranking/ChessRanking.jsx";
+import WordleRanking from "./components/Default/Ranking/WordleRanking.jsx";
 import Stats from "./components/UserLayout/MainPage/Stats.jsx";
 import Friends from "./components/UserLayout/MainPage/Friends.jsx";
 import WhoCanWatch from "./components/UserLayout/MainPage/UserSettings/WhoCanWatch.jsx";
@@ -47,7 +50,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/games',
-                element: <Games />
+                element: <UserGames />
             },
             {
                 path: '/battleshiprooms',
@@ -67,7 +70,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/ranking',
-                element: <Ranking />
+                element: <UserRanking />
             },
             {
                 path: '/battleshipranking',
@@ -104,22 +107,6 @@ const router = createBrowserRouter([
             {
                 path: '/friends',
                 element: <Friends />
-            },
-            {
-                path: '/wordle',
-                element: <Wordle />
-            },
-            {
-                path: '/checkers',
-                element: <Checkers />
-            },
-            {
-                path: '/chess',
-                element: <Chess />
-            },
-            {
-                path: '/battleship',
-                element: <Battleship />
             }
         ]
     },
@@ -147,7 +134,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <ProtectedAnonUserRoute><StartLayout/></ProtectedAnonUserRoute>,
+        element: <ProtectedAnonUserRoute><MainGuestLayout/></ProtectedAnonUserRoute>,
         children: [
             {
                 path: '/',
@@ -213,7 +200,6 @@ const router = createBrowserRouter([
             },
         ]
     },
-    
     {
         path: '*',
         element: <NotFound />
