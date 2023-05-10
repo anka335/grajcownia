@@ -36,88 +36,88 @@ import ProtectedUserRoute from "./ProtectedRoutes/ProtectedUserRoute.jsx";
 import ProtectedAnonUserRoute from "./ProtectedRoutes/ProtectedAnonUserRoute.jsx";
 
 const router = createBrowserRouter([
+        {
+            path: '/',
+            element: /*<ProtectedUserRoute>*/<UserLayout/>/*</ProtectedUserRoute>*/,
+            children: [
+                /*{
+                    path: '/',
+                    element: <Navigate to="/mainuserpage" />
+                },*/
+                {
+                    path: '/mainuserpage',
+                    element: <MainUserPage />
+                },
+                {
+                    path: '/games',
+                    element: <UserGames />
+                },
+                {
+                    path: '/battleshiprooms',
+                    element: <BattleshipRooms />
+                },
+                {
+                    path: '/checkersrooms',
+                    element: <CheckersRooms />
+                },
+                {
+                    path: '/chessrooms',
+                    element: <ChessRooms />
+                },
+                {
+                    path: '/wordlerooms',
+                    element: <WordleRooms />
+                },
+                {
+                    path: '/ranking',
+                    element: <UserRanking />
+                },
+                {
+                    path: '/battleshipranking',
+                    element: <BattleshipRanking />
+                },
+                {
+                    path: '/checkersranking',
+                    element: <CheckersRanking />
+                },
+                {
+                    path: '/chessranking',
+                    element: <ChessRanking />
+                },
+                {
+                    path: '/wordleranking',
+                    element: <WordleRanking />
+                },
+                {
+                    path: '/usersettings',
+                    element: <UserSettings />
+                },
+                {
+                    path: '/whocanwatch',
+                    element: <WhoCanWatch />
+                },
+                {
+                    path: '/modifyaccount',
+                    element: <ModifyAccount />
+                },
+                {
+                    path: '/stats',
+                    element: <Stats />
+                },
+                {
+                    path: '/friends',
+                    element: <Friends />
+                }
+            ]
+        },
     {
         path: '/',
-        element: <ProtectedUserRoute><UserLayout/></ProtectedUserRoute>,
+        element: /*<ProtectedGuestRoute>*/<StartLayout/>/*</ProtectedGuestRoute>*/,
         children: [
-            {
-                path: '/',
-                element: <Navigate to="/mainuserpage" />
-            },
-            {
-                path: 'mainuserpage',
-                element: <MainUserPage />
-            },
-            {
-                path: '/games',
-                element: <UserGames />
-            },
-            {
-                path: '/battleshiprooms',
-                element: <BattleshipRooms />
-            },
-            {
-                path: '/checkersrooms',
-                element: <CheckersRooms />
-            },
-            {
-                path: '/chessrooms',
-                element: <ChessRooms />
-            },
-            {
-                path: '/wordlerooms',
-                element: <WordleRooms />
-            },
-            {
-                path: '/ranking',
-                element: <UserRanking />
-            },
-            {
-                path: '/battleshipranking',
-                element: <BattleshipRanking />
-            },
-            {
-                path: '/checkersranking',
-                element: <CheckersRanking />
-            },
-            {
-                path: '/chessranking',
-                element: <ChessRanking />
-            },
-            {
-                path: '/wordleranking',
-                element: <WordleRanking />
-            },
-            {
-                path: '/usersettings',
-                element: <UserSettings />
-            },
-            {
-                path: '/whocanwatch',
-                element: <WhoCanWatch />
-            },
-            {
-                path: '/modifyaccount',
-                element: <ModifyAccount />
-            },
-            {
-                path: '/stats',
-                element: <Stats />
-            },
-            {
-                path: '/friends',
-                element: <Friends />
-            }
-        ]
-    },
-    {
-        path: '/',
-        element: <ProtectedGuestRoute><StartLayout/></ProtectedGuestRoute>,
-        children: [
-            {
+            /*{
                 path: '/',
                 element: <Navigate to="/starterpage" />
-            },
+            },*/
             {
                 path: '/starterpage',
                 element: <StarterPage />
@@ -134,16 +134,16 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <ProtectedAnonUserRoute><MainGuestLayout/></ProtectedAnonUserRoute>,
+        element: /*<ProtectedAnonUserRoute>*/<MainGuestLayout/>/*</ProtectedAnonUserRoute>*/,
         children: [
-            {
+            /*{
                 path: '/',
                 element: <Navigate to="/guestlayout/mainguestpage" />
             },
             {
                 path: '/guestlayout',
                 element: <Navigate to="/guestlayout/mainguestpage" />
-            },
+            },*/
             {
                 path: '/guestlayout',
                 element: <GuestLayout />,

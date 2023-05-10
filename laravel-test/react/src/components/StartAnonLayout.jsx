@@ -1,12 +1,18 @@
 import { Navigate, Outlet } from "react-router-dom";
-//import { useStateContext } from "../contexts/ContextProvider";
+import { UserAuth } from "../contexts/AuthContext";
 
 export default function MainGuestLayout(){
-    /* {token} = useStateContext()
+    const { user } = UserAuth();
 
-    if (token) {
-        return <Navigate to="/" />
-    }*/
+    console.log("user: ", user);
+    if (user && !user?.isAnonymous) {
+        console.log("mainuserpage (startanonlayout)");
+        return <Navigate to="/mainuserpage" />
+    } else if (!user) {
+        console.log("starterpage (startanonlayout)")
+        return <Navigate to="/starterpage" />
+    }
+
     return(
         <div>
             <Outlet/>
