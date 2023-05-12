@@ -19,103 +19,103 @@ export default function Chess(){
                     {/* Dodajemy className 'even' dla parzystych rzędów i 'odd' dla nieparzystych rzędów */}
                     {/* Dodajemy className 'label' dla pierwszej komórki w każdym wierszu (etykiety rzędów) */}
                     <tr>
-                        <td className="label">8</td>
-                        <td className="even"></td>
-                        <td className="odd"></td>
-                        <td className="even"></td>
-                        <td className="odd"></td>
-                        <td className="even"></td>
-                        <td className="odd"></td>
-                        <td className="even"></td>
-                        <td className="odd"></td>
+                        <td className="left_label">8</td>
+                        <td className="even left_border top_border"></td>
+                        <td className="odd top_border"></td>
+                        <td className="even top_border"></td>
+                        <td className="odd top_border"></td>
+                        <td className="even top_border"></td>
+                        <td className="odd top_border"></td>
+                        <td className="even top_border"></td>
+                        <td className="odd right_border top_border"></td>
                     </tr>
                     <tr>
-                        <td className="label">7</td>
-                        <td className="odd"></td>
+                        <td className="left_label">7</td>
+                        <td className="odd left_border"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
-                        <td className="even"></td>
+                        <td className="even right_border"></td>
                     </tr>
                     <tr>
-                        <td className="label">6</td>
-                        <td className="even"></td>
+                        <td className="left_label">6</td>
+                        <td className="even left_border"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
-                        <td className="odd"></td>
+                        <td className="odd right_border"></td>
                     </tr>
                     <tr>
-                        <td className="label">5</td>
-                        <td className="odd"></td>
+                        <td className="left_label">5</td>
+                        <td className="odd left_border"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
-                        <td className="even"></td>
+                        <td className="even right_border"></td>
                     </tr>
                     <tr>
-                        <td className="label">4</td>
-                        <td className="even"></td>
+                        <td className="left_label">4</td>
+                        <td className="even left_border"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
-                        <td className="odd"></td>
+                        <td className="odd right_border"></td>
                     </tr>
                     <tr>
-                        <td className="label">3</td>
-                        <td className="odd"></td>
+                        <td className="left_label">3</td>
+                        <td className="odd left_border"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
-                        <td className="even"></td>
+                        <td className="even right_border"></td>
                     </tr>
                     <tr>
-                        <td className="label">2</td>
-                        <td className="even"></td>
+                        <td className="left_label">2</td>
+                        <td className="even left_border"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
                         <td className="odd"></td>
                         <td className="even"></td>
-                        <td className="odd"></td>
+                        <td className="odd right_border"></td>
                     </tr>
                     <tr>
-                        <td className="label">1</td>
-                        <td className="odd"></td>
-                        <td className="even"></td>
-                        <td className="odd"></td>
-                        <td className="even"></td>
-                        <td className="odd"></td>
-                        <td className="even"></td>
-                        <td className="odd"></td>
-                        <td className="even"></td>
+                        <td className="left_label">1</td>
+                        <td className="odd left_border bottom_border"></td>
+                        <td className="even bottom_border"></td>
+                        <td className="odd bottom_border"></td>
+                        <td className="even bottom_border"></td>
+                        <td className="odd bottom_border"></td>
+                        <td className="even bottom_border"></td>
+                        <td className="odd bottom_border"></td>
+                        <td className="even right_border bottom_border"></td>
                     </tr>
                     <tr>
-                        <td className="label"></td>
-                        <td className="label">A</td>
-                        <td className="label">B</td>
-                        <td className="label">C</td>
-                        <td className="label">D</td>
-                        <td className="label">E</td>
-                        <td className="label">F</td>
-                        <td className="label">G</td>
-                        <td className="label">H</td>
+                        <td className="corner_label"></td>
+                        <td className="bottom_label">A</td>
+                        <td className="bottom_label">B</td>
+                        <td className="bottom_label">C</td>
+                        <td className="bottom_label">D</td>
+                        <td className="bottom_label">E</td>
+                        <td className="bottom_label">F</td>
+                        <td className="bottom_label">G</td>
+                        <td className="bottom_label">H</td>
                     </tr>
                     </tbody>
                 </table>
