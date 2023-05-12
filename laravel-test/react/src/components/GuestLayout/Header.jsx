@@ -20,9 +20,9 @@ export default function Header(){
         try {
             await logout();
             navigate('/login');
-            console.log('You are logged out from anonymous account')
+            //console.log('You are logged out from anonymous account')
         } catch (e) {
-            console.log(e.message);
+            //console.log(e.message);
         }
     }
 
@@ -30,9 +30,9 @@ export default function Header(){
         try {
             await logout();
             navigate('/signup');
-            console.log('You are logged out from anonymous account')
+            //console.log('You are logged out from anonymous account')
         } catch (e) {
-            console.log(e.message);
+            //console.log(e.message);
         }
     }
 

@@ -5,8 +5,11 @@ import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
 import { useState } from "react";
 
-const FinalLink = styled(StyledLink)`
+const SignupLink = styled(StyledLink)`
   margin-left: 3px;
+`;
+const LoginLink = styled(StyledLink)`
+  margin-left: 4px;
 `;
 
 export default function MainPage(){
@@ -19,11 +22,11 @@ export default function MainPage(){
         setError('')
         try {
           await anonymousSignIn()
-          navigate('/guestlayout/mainguestpage')
-          console.log('You are logged in anonymously')
+          //navigate('/guestlayout/mainguestpage')
+          //console.log('You are logged in anonymously')
         } catch (e) {
           setError(e.message)
-          console.log(e.message)
+          //console.log(e.message)
         }
     }
 
@@ -33,10 +36,8 @@ export default function MainPage(){
                 <img src={Logo} height={100}/>
             </header>
             <section>
-                <FinalLink to="/signup">zarejestruj się</FinalLink>
-                <hr/>
-                <FinalLink to="/login">zaloguj się</FinalLink>
-                <hr/>
+                <SignupLink to="/signup">zarejestruj się</SignupLink>
+                <LoginLink to="/login">zaloguj się</LoginLink>
                 <button onClick={handleSubmit} className="light-button">graj jako gość</button>
             </section>
         </div>

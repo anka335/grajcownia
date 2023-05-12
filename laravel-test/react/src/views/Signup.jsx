@@ -38,7 +38,7 @@ export default function Signup(){
                         displayName: nick
                     })
                     // ...
-                    console.log(event);
+                    //console.log(event);
                 })
                 .catch((error) => {
                     var errorCode = error.code;
@@ -58,10 +58,10 @@ export default function Signup(){
         try {
           await anonymousSignIn()
           navigate('/guestlayout/mainguestpage')
-          console.log('You are logged in anonymously')
+          //console.log('You are logged in anonymously')
         } catch (e) {
           setError(e.message)
-          console.log(e.message)
+          //console.log(e.message)
         }
     }
 

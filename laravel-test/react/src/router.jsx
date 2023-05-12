@@ -38,7 +38,7 @@ import ProtectedAnonUserRoute from "./ProtectedRoutes/ProtectedAnonUserRoute.jsx
 const router = createBrowserRouter([
         {
             path: '/',
-            element: /*<ProtectedUserRoute>*/<UserLayout/>/*</ProtectedUserRoute>*/,
+            element: <ProtectedUserRoute><UserLayout/></ProtectedUserRoute>,
             children: [
                 /*{
                     path: '/',
@@ -112,7 +112,7 @@ const router = createBrowserRouter([
         },
     {
         path: '/',
-        element: /*<ProtectedGuestRoute>*/<StartLayout/>/*</ProtectedGuestRoute>*/,
+        element: <ProtectedGuestRoute><StartLayout/></ProtectedGuestRoute>,
         children: [
             /*{
                 path: '/',
@@ -134,7 +134,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: /*<ProtectedAnonUserRoute>*/<MainGuestLayout/>/*</ProtectedAnonUserRoute>*/,
+        element: <ProtectedAnonUserRoute><MainGuestLayout/></ProtectedAnonUserRoute>,
         children: [
             /*{
                 path: '/',

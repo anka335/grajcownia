@@ -18,11 +18,11 @@ export default function Login() {
         setError('')
         try {
           await signIn(email, password)
-          navigate('/mainuserpage')
-          console.log('You are logged in')
+          //navigate('/mainuserpage')
+          //console.log('You are logged in')
         } catch (e) {
           setError(e.message)
-          console.log(e.message)
+          //console.log(e.message)
         }
       };
       const onAnonymous = async (e) => {
@@ -30,11 +30,11 @@ export default function Login() {
         setError('')
         try {
           await anonymousSignIn()
-          navigate('/guestlayout/mainguestpage')
-          console.log('You are logged in anonymously')
+          //navigate('/guestlayout/mainguestpage')
+          //console.log('You are logged in anonymously')
         } catch (e) {
           setError(e.message)
-          console.log(e.message)
+          //console.log(e.message)
         }
     }
 

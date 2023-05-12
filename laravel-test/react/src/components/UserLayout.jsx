@@ -18,20 +18,19 @@ export default function DefaultLayout() {
     const onLogout = async () => {
         try {
             await logout();
-            navigate('/starterpage');
-            console.log('You are logged out')
+            //console.log('You are logged out')
         } catch (e) {
             console.log(e.message);
         }
     }
 
-    console.log("user: ", user);
+    //console.log("user: ", user);
     if (user && user?.isAnonymous) {
         console.log("anonim (userlayout)");
-        return <Navigate to="/guestlayout/mainguestpage" />
+        return <Navigate to="/" />
     } else if (!user) {
         console.log("starterpage (userlayout)")
-        return <Navigate to="/starterpage" />
+        return <Navigate to="/" />
     }
 
     return (
