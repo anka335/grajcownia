@@ -12,6 +12,7 @@ export default function Login() {
       const navigate = useNavigate();
       const { signIn } = UserAuth();
       const { anonymousSignIn } = UserAuth();
+      const { user } = UserAuth();
     
       const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,7 +20,7 @@ export default function Login() {
         try {
           await signIn(email, password)
           //navigate('/mainuserpage')
-          //console.log('You are logged in')
+          console.log('You are logged in');
         } catch (e) {
           setError(e.message)
           //console.log(e.message)

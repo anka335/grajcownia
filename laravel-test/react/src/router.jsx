@@ -40,10 +40,10 @@ const router = createBrowserRouter([
             path: '/',
             element: <ProtectedUserRoute><UserLayout/></ProtectedUserRoute>,
             children: [
-                /*{
+                {
                     path: '/',
                     element: <Navigate to="/mainuserpage" />
-                },*/
+                },
                 {
                     path: '/mainuserpage',
                     element: <MainUserPage />
@@ -114,10 +114,10 @@ const router = createBrowserRouter([
         path: '/',
         element: <ProtectedGuestRoute><StartLayout/></ProtectedGuestRoute>,
         children: [
-            /*{
+            {
                 path: '/',
                 element: <Navigate to="/starterpage" />
-            },*/
+            },
             {
                 path: '/starterpage',
                 element: <StarterPage />
@@ -136,14 +136,30 @@ const router = createBrowserRouter([
         path: '/',
         element: <ProtectedAnonUserRoute><MainGuestLayout/></ProtectedAnonUserRoute>,
         children: [
-            /*{
+            {
                 path: '/',
                 element: <Navigate to="/guestlayout/mainguestpage" />
             },
             {
                 path: '/guestlayout',
                 element: <Navigate to="/guestlayout/mainguestpage" />
-            },*/
+            },
+            {
+                path: '/wordle',
+                element: <Wordle/>
+            },
+            {
+                path: '/Battleship',
+                element: <Battleship/>
+            },
+            {
+                path: '/checkers',
+                element: <Checkers/>
+            },
+            {
+                path: '/Chess',
+                element: <Chess/>
+            },
             {
                 path: '/guestlayout',
                 element: <GuestLayout />,

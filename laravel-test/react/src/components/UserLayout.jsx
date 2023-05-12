@@ -24,15 +24,6 @@ export default function DefaultLayout() {
         }
     }
 
-    //console.log("user: ", user);
-    if (user && user?.isAnonymous) {
-        console.log("anonim (userlayout)");
-        return <Navigate to="/" />
-    } else if (!user) {
-        console.log("starterpage (userlayout)")
-        return <Navigate to="/" />
-    }
-
     return (
         <div className="MP">
         <header>
