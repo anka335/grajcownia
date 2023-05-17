@@ -6,7 +6,7 @@ import passwordValidator from 'password-validator';
 import { validate } from 'email-validator';
 import { UserAuth } from '../contexts/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 const schema_pw = new passwordValidator();
 
 schema_pw
@@ -15,6 +15,9 @@ schema_pw
     .has().uppercase()                              // Must have uppercase letters
     .has().lowercase()                              // Must have lowercase letters
     .has().not().spaces()                           // Should not have spaces
+
+
+
 
 export default function Signup(){
 
@@ -25,6 +28,24 @@ export default function Signup(){
     const navigate = useNavigate();
     const { anonymousSignIn } = UserAuth();
 
+    async function addUserToDatabase() {
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/users', {
+                name: nick,
+                email: email,
+                password: password
+            }, 
+            {
+                headers: {
+                    'Key': 'Accept',
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log('Utworzono konto użytkownika w bazie danych:', response.data);
+        } catch (error) {
+            console.error('Błąd podczas dodawania użytkownika do bazy danych:', error);
+        }
+    }
     function handleSubmit(event) {
         event.preventDefault();
       
@@ -38,7 +59,10 @@ export default function Signup(){
                         displayName: nick
                     })
                     // ...
-                    //console.log(event);
+                    addUserToDatabase()
+                    console.log('Uzytkownik: ' + nick);
+                    console.log('Email: ' + email);
+                    console.log('Hasło: ' + password);
                 })
                 .catch((error) => {
                     var errorCode = error.code;
