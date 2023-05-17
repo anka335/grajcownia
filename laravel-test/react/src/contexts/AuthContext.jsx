@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInAnonymously, updatePassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, signInAnonymously, updatePassword, deleteUser, reauthenticateWithCredential } from 'firebase/auth';
 import { auth } from '../firebase';
 
 const UserContext = createContext();
@@ -22,6 +22,14 @@ export const AuthContextProvider = ({ children }) => {
 
   const anonymousSignIn = () => {
     return signInAnonymously(auth)
+  }
+
+  const removeUser = (currentUser) => {
+    return deleteUser(currentUser)
+  }
+
+  const reauthenticate = (user, credential) => {
+    return reauthenticateWithCredential(user, credential)
   }
 
   useEffect(() => {
