@@ -13,18 +13,19 @@ class Room extends Model
         'description',
         'status',
         'game_type',
+        'user_id',
         // inne pola
     ];
 
     // Relacja z użytkownikami (twórcą pokoju i użytkownikami w pokoju)
     public function creator()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'id');
     }
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'room_user')->withTimestamps();
+        return $this->hasMany(User::class);
     }
 
     // Metoda dołączania użytkownika do pokoju

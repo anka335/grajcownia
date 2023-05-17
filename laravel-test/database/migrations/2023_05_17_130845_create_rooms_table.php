@@ -21,7 +21,7 @@ class CreateRoomsTable extends Migration
             $table->enum('game_type', ['chess', 'checkers', 'battleships', 'wordle'])->default('wordle');
             // inne pola
 
-            $table->unsignedBigInteger('user_id'); // klucz obcy dla twórcy pokoju
+            $table->unsignedBigInteger('user_id')->nullable()->default(null); // klucz obcy dla twórcy pokoju
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();

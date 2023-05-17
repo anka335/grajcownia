@@ -33,6 +33,7 @@ class UserController extends Controller
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->uid = $request->input('uid');
+        $user->room_id = null;
         $user->save();
         return response()->json($user, 201);
     }

@@ -32,9 +32,10 @@ class RoomController extends Controller
             'description' => 'nullable',
             'status' => 'required|in:active,inactive',
             'game_type' => 'nullable|in:chess,checkers,battleships,wordle',
+            'user_id' => 'nullable'
             // inne wymagane pola
         ]);
-
+        \Log::info($request->all());
         $room = Room::create($request->all());
 
         return response()->json(['data' => $room], 201);
