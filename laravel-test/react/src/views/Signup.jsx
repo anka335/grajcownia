@@ -28,12 +28,12 @@ export default function Signup(){
     const navigate = useNavigate();
     const { anonymousSignIn } = UserAuth();
 
-    async function addUserToDatabase() {
+    async function addUserToDatabase(user) {
         try {
             const response = await axios.post('http://127.0.0.1:8000/api/users', {
                 name: nick,
                 email: email,
-                password: password
+                uid: user.uid
             }, 
             {
                 headers: {
@@ -59,7 +59,8 @@ export default function Signup(){
                         displayName: nick
                     })
                     // ...
-                    addUserToDatabase()
+                    console.log('UID: ' + user.uid);
+                    addUserToDatabase(user)
                     console.log('Uzytkownik: ' + nick);
                     console.log('Email: ' + email);
                     console.log('Hasło: ' + password);

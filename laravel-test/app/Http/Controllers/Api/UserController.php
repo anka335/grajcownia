@@ -27,18 +27,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $name = $request->input('name');
-        $email = $request->input('email');
-    
-        // Wyświetlanie wartości przekazanych pól
-        \Log::info('Nazwa użytkownika: ' . $name);
-        \Log::info('Email: ' . $email);
         $data = $request->all();
         //add some validation
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        $user->password = $request->input('password');
+        $user->uid = $request->input('uid');
         $user->save();
         return response()->json($user, 201);
     }
