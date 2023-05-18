@@ -320,6 +320,88 @@ button:hover {
     scrollbar-width: thin;
     scrollbar-color: #84A98C #CAD2C5;
 }
+#wordle_rooms{
+    width: 70vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#wordle_rooms_div1{
+    width: 70vw;
+    height: 20%;
+}
+#wordle_rooms_div2{
+    width: 70vw;
+    height: 80%;  
+}
+.wordle_form{
+    justify-self: center;
+    align-self: center;
+    width: 200px;
+    height: 100px;
+    background-color: #84A98C;
+    position: absolute;
+    transition-duration: 0.7s;
+}
+.wordle_form_not_visible{
+    justify-self: center;
+    align-self: center;
+    width: 200px;
+    height: 100px;
+    background-color: #CAD2C5;
+    position: absolute;
+    transition-duration: 0.7s;
+    visibility: hidden;
+}
+.wordle_form_not_visible * {
+    transition-duration: 0.7s;
+    visibility: hidden;
+    background-color: #CAD2C5;
+    color: #CAD2C5;
+    border-color: #CAD2C5;
+}
+.wordle_form * {
+    transition-duration: 0.7s;
+}
+.wordle_form form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.7s;
+}
+.wordle_form input {
+    width: 80%;
+    transition-duration: 0.7s;
+}
+.wordle_form_not_visible form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.7s;
+    visibility: hidden;
+}
+.wordle_form_not_visible input {
+    width: 80%;
+    transition-duration: 0.7s;
+    visibility: hidden;
+}
+.game_form_btn {
+    border: none;
+    background-color: #52796F;
+    color: #CAD2C5;
+    vertical-align: center;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+}
 #game_section {
     width: 85vw;
     height: 70vh;
