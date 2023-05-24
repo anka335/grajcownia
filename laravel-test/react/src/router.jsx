@@ -34,6 +34,7 @@ import Battleship from "./views/Battleship.jsx";
 import ProtectedGuestRoute from "./ProtectedRoutes/ProtectedGuestRoute.jsx";
 import ProtectedUserRoute from "./ProtectedRoutes/ProtectedUserRoute.jsx";
 import ProtectedAnonUserRoute from "./ProtectedRoutes/ProtectedAnonUserRoute.jsx";
+import Example from "./components/Default/Games/Example.jsx";
 
 const router = createBrowserRouter([
         {
