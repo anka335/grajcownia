@@ -11,9 +11,11 @@ class Profile extends Model
 
     protected $fillable = [
         'user_id',
-        'nick',
-        'who_can_watch'
-        // Dodaj inne atrybuty profilu
+        'who_can_watch',
+        'chess_rating',
+        'checkers_rating',
+        'wordle_rating',
+        'battleships_rating'
     ];
 
     public function user()
