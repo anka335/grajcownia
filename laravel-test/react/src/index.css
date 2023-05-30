@@ -26,7 +26,13 @@ input {
     margin: 2px 0;
     box-sizing: border-box;
     border: solid #2F3E46 1px;
-  }
+}
+input[type="submit"]{
+    transition-duration: 0.7s;
+}
+input[type="submit"]:hover{
+    color: white;
+}
 button {
     background-color: #52796F;
     border: none;
@@ -295,7 +301,7 @@ button:hover {
     justify-content: center;
     align-items: center;
 }
-#stats_scrollbar {
+.stats_scrollbar {
     margin-left: 5vw;
     width: 60vw;
     height: 40vh;
@@ -316,9 +322,104 @@ button:hover {
 ::-webkit-scrollbar-thumb:hover {
     background-color: #52796F;
 }
-#stats_scrollbar{
+.stats_scrollbar{
     scrollbar-width: thin;
     scrollbar-color: #84A98C #CAD2C5;
+}
+#wordle_rooms{
+    width: 70vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#wordle_rooms_div1{
+    width: 70vw;
+    height: 20%;
+}
+#wordle_rooms_div2{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+#wordle_rooms_div2 hr {
+    background-color: #84A98C;
+    color: #84A98C;
+    border: none;
+    height: 2px;
+    width: 80%;
+}
+.wordle_form{
+    justify-self: center;
+    align-self: center;
+    width: 200px;
+    height: 100px;
+    background-color: #84A98C;
+    position: absolute;
+    transition-duration: 0.7s;
+    opacity: 1;
+}
+.wordle_form_not_visible{
+    justify-self: center;
+    align-self: center;
+    width: 200px;
+    height: 100px;
+    position: absolute;
+    transition-duration: 0.7s;
+    opacity: 0;
+}
+.wordle_form * {
+    transition-duration: 0.7s;
+    opacity: 1;
+}
+.wordle_form_not_visible * {
+    transition-duration: 0.7s;
+    visibility: hidden;
+    opacity: 0;
+}
+.wordle_form form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.7s;
+    opacity: 1;
+}
+.wordle_form input {
+    width: 80%;
+    transition-duration: 0.7s;
+    opacity: 1;
+}
+.wordle_form_not_visible form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.7s;
+    opacity: 0;
+}
+.wordle_form_not_visible input {
+    width: 80%;
+    transition-duration: 0.7s;
+    opacity: 0;
+}
+.list_of_rooms {
+    width: 100%;
+    height: 50px;
+}
+.game_form_btn {
+    border: none;
+    background-color: #52796F;
+    color: #CAD2C5;
+    vertical-align: center;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
 }
 #game_section {
     width: 85vw;
