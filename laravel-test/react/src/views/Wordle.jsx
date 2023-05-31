@@ -1,7 +1,16 @@
 import Header from "../components/GuestLayout/Header"
 import Chat from "../components/Games/Chat"
+import { Navigate, useLoaderData } from "react-router-dom";
 
 export default function Wordle(){
+    let data = useLoaderData();
+    console.log(data);
+    if (!data){
+        return(
+            <Navigate to="/"/>
+        )
+    }
+
     return(
         <div className="MP">
             <Header />

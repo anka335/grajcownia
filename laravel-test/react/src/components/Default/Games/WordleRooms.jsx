@@ -9,6 +9,12 @@ function Form(isVisible){
 
 const baseURL = "http://127.0.0.1:8000/api/rooms";
 
+
+export const usePost = (post) => {
+    console.log(post[1].id);
+    return post;
+}
+
 export default function WordleRooms(){
     const [visible, setVisible] = useState(false);
     const [input, setInput] = useState('');
@@ -47,7 +53,12 @@ export default function WordleRooms(){
         });
       }, []);
     
-      if (!post) return null;
+
+      if (!post) {
+        return null;
+        }
+
+        usePost(post);
 
         return(
             <div id="wordle_rooms">

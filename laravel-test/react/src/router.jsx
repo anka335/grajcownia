@@ -34,7 +34,18 @@ import Battleship from "./views/Battleship.jsx";
 import ProtectedGuestRoute from "./ProtectedRoutes/ProtectedGuestRoute.jsx";
 import ProtectedUserRoute from "./ProtectedRoutes/ProtectedUserRoute.jsx";
 import ProtectedAnonUserRoute from "./ProtectedRoutes/ProtectedAnonUserRoute.jsx";
-import Example from "./components/Default/Games/Example.jsx";
+import Blank from "./views/Blank.jsx";
+import React from "react";
+import axios from "axios";
+import { useState } from "react"
+import { useNavigate } from "react-router-dom";
+
+const baseURL = "http://127.0.0.1:8000/api/rooms";
+
+/*const testRoutes = post.map((room) => ({
+    path: `/testroom/${room.id}`,
+    element: <Wordle />,
+  }));*/
 
 const router = createBrowserRouter([
         {
@@ -140,6 +151,16 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Navigate to="/guestlayout/mainguestpage" />
+            },
+            {
+                path: "/testroom/:roomid",
+                loader: async ({request, params}) => {
+                    const gameURL = "http://127.0.0.1:8000/api/rooms/" + params.roomid;
+                    const response = await axios.get(gameURL);
+                    const data = response.data;
+                    return data;
+                },
+                element: <Wordle/>
             },
             {
                 path: '/guestlayout',
