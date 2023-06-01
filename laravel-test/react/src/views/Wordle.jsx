@@ -8,7 +8,7 @@ export default function Wordle() {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
 
-  const data = useLoaderData();
+  const data = useLoaderData().data;
   console.log(data);
   if (!data) {
     return <Navigate to="/" />;
@@ -20,8 +20,7 @@ export default function Wordle() {
     const pusher = new Pusher('17fe7f4b4a52d62f2e3f', {
       cluster: 'eu'
     });
-
-    const channel = pusher.subscribe('chat');
+    const channel = pusher.subscribe('game-room-' + data.id);
     const handleNewMessage = (data) => {
       setMessages((prevMessages) => [...prevMessages, data]);
     };
@@ -29,7 +28,7 @@ export default function Wordle() {
 
     return () => {
       channel.unbind('message', handleNewMessage);
-      pusher.unsubscribe('chat');
+      pusher.unsubscribe('game-room-' + data.id);
       pusher.disconnect();
     };
   }, []);
@@ -41,17 +40,21 @@ export default function Wordle() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log("gowienko");
+    console.log(message);
     axios.post(
-      'http://127.0.0.1:8000/api/messages',
-      { message },
-      {
-        headers: {
-          'Key': 'Accept',
-          'Content-Type': 'application/json'
+        'http://127.0.0.1:8000/api/messages',
+        {
+          message: message,
+          roomId: data.id
+        },
+        {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
         }
-      }
-    );
+      );
 
     console.log("poprzednia wiadomosc: ", message);
     setMessage('');

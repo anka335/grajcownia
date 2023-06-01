@@ -14,16 +14,17 @@ class Message implements ShouldBroadcast
 
   public $message;
   public $username;
-
-  public function __construct($username, $message)
+  public $roomId;
+  public function __construct($username, $message, $roomId)
   {
     $this->message = $message;
     $this->username = $username;
+    $this->roomId = $roomId;
   }
 
   public function broadcastOn()
   {
-      return ['chat'];
+      return new Channel('game-room-' . $this->roomId);
   }
 
   public function broadcastAs()
