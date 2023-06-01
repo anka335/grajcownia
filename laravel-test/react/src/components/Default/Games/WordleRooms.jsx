@@ -2,6 +2,16 @@ import { useState } from "react"
 import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
+import { Navigate } from "react-router-dom";
+import { StyledLink } from "../../../NavStyle";
+import styled from "styled-components";
+
+const FinalLink = styled(StyledLink)`
+    margin-left: 15px;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+`;
 
 function Form(isVisible){
     return <div className={`container${ isVisible ? ' wordle_form' : ' wordle_form_not_visible'}`}>aa</div>
@@ -76,6 +86,7 @@ export default function WordleRooms(){
                         <div key={item.id} className="list_of_rooms">
                             <span>ID: {item.id}</span>
                             <span>Nazwa: {item.name}</span>
+                            <FinalLink to={"/testroom/" + item.id}>Dołącz</FinalLink>
                             <hr/>
                         </div>
                     ))}

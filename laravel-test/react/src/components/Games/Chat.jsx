@@ -10,7 +10,7 @@ export default function Chat(){
             <span>
                 zgaduje: anka323
             </span>
-            <div id="chat_box">anka335: ANEEFEF</div>
+            <div id="chat_box"><p>anka335: ANEEFEF</p><p>anka323: aBFAOA</p></div>
             <form><input type="text"/><input type="button" value="wyślij"/></form>
         </aside>
     )

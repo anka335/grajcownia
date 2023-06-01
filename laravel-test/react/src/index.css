@@ -408,7 +408,11 @@ button:hover {
 }
 .list_of_rooms {
     width: 100%;
-    height: 50px;
+    height: 70px;
+}
+.list_of_rooms * {
+    margin-left: 10px;
+    margin-right: 10px;
 }
 .game_form_btn {
     border: none;
