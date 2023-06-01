@@ -439,6 +439,16 @@ button:hover {
     align-items: center;
     justify-content: center;
 }
+#selector:hover {
+    transition-duration: 0.4s;
+    background-color: #CAD2C5;
+    cursor: pointer;
+}
+#guesser:hover {
+    transition-duration: 0.4s;
+    background-color: #CAD2C5;
+    cursor: pointer;
+}
 #wordle_main {
     width: 28vw;
     height: 60vh;

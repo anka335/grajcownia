@@ -80,12 +80,12 @@ export default function Wordle() {
         <aside id="chat">
         <div id="chat_close"><div>X</div></div>
         <span>partia anka335 anka323</span>
-        <span>
+        <div id="selector">
              wybiera: anka335
-        </span>
-        <span>
+        </div>
+        <div id="guesser">
                 zgaduje: anka323
-        </span>
+        </div>
           <div id="chat_box" className="stats_scrollbar">
             {messages.map((message, index) => (
               <p key={index}>{message.message}</p>
