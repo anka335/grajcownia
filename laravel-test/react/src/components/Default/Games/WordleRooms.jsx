@@ -38,7 +38,7 @@ export default function WordleRooms(){
         const roomName = input;
         e.preventDefault();
         try {
-            const res = axios.post('http://127.0.0.1:8000/api/rooms', {
+            const res = axios.post(baseURL, {
                 name: roomName,
                 status: "active",
                 game_type: "wordle",
@@ -59,7 +59,6 @@ export default function WordleRooms(){
     React.useEffect(() => {
         axios.get(baseURL).then((response) => {
           setPost(response.data);
-          console.log(response.data);
         });
       }, []);
     

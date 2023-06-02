@@ -9,9 +9,15 @@ class ChatController extends Controller
 {
     public function message(Request $request)
     {
-        
-        \Log::info($request->all());
-        event(new Message($request->input('username'), $request->input('message'), $request->input('roomId')));
+        $username = $request->input('username');
+        $message = $request->input('message');
+        $roomId = $request->input('roomId');
+        if(!$username){
+            $username = "Anon";
+        }
+        if($message){
+            event(new Message($username, $message, $roomId));
+        }
         return [];
     }
 }

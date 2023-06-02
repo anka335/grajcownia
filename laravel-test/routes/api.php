@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\RoomController;
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\RoleChangeController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,6 +17,7 @@ use App\Http\Controllers\ChatController;
 |
 */
 Route::post('/messages', [ChatController::class, 'message']);
+Route::post('/roles', [RoleChangeController::class, 'role']);
 Route::apiResource('/users', UserController::class);
 Route::delete('/users/delete/uid/{uid}', [UserController::class, 'deleteByUid']);
 Route::apiResource('/rooms', RoomController::class);

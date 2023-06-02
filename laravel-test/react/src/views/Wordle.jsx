@@ -3,19 +3,20 @@ import { Navigate, useLoaderData } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Pusher from "pusher-js";
 import axios from "axios";
+import { UserAuth } from '../contexts/AuthContext';
 
 export default function Wordle() {
+  const { user } = UserAuth();
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
 
   const data = useLoaderData().data;
-  console.log(data);
   if (!data) {
     return <Navigate to="/" />;
   }
 
   useEffect(() => {
-    Pusher.logToConsole = true;
+    Pusher.logToConsole = false;
 
     const pusher = new Pusher('17fe7f4b4a52d62f2e3f', {
       cluster: 'eu'
@@ -40,13 +41,12 @@ export default function Wordle() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("gowienko");
-    console.log(message);
     axios.post(
         'http://127.0.0.1:8000/api/messages',
         {
           message: message,
-          roomId: data.id
+          roomId: data.id,
+          username: user.displayName
         },
         {
           headers: {
@@ -55,8 +55,6 @@ export default function Wordle() {
           }
         }
       );
-
-    console.log("poprzednia wiadomosc: ", message);
     setMessage('');
   };
 
@@ -88,7 +86,7 @@ export default function Wordle() {
         </div>
           <div id="chat_box" className="stats_scrollbar">
             {messages.map((message, index) => (
-              <p key={index}>{message.message}</p>
+              <p key={index}>{message.username}: {message.message}</p>
             ))}
           </div>
           <form>
