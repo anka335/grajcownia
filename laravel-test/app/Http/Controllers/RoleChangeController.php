@@ -13,6 +13,7 @@ class RoleChangeController extends Controller
         $roomId = $request->input('roomId');
         $role = $request->input('role');
         $uid = $request->input('uid');
+        \Log::info($roomId . $role . $uid);
         if($role == 'selector')
         {
             $isRoleAvailable = Room::where('id', $roomId)->whereNull('selector_id')->exists();
