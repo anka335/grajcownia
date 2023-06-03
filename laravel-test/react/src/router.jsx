@@ -61,6 +61,16 @@ const router = createBrowserRouter([
                     element: <MainUserPage />
                 },
                 {
+                    path: "/testroom/:roomid",
+                    loader: async ({request, params}) => {
+                        const gameURL = "http://127.0.0.1:8000/api/rooms/" + params.roomid;
+                        const response = await axios.get(gameURL);
+                        const data = response.data;
+                        return data;
+                    },
+                    element: <Wordle/>
+                },
+                {
                     path: '/games',
                     element: <UserGames />
                 },

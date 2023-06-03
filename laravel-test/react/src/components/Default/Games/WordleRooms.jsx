@@ -21,7 +21,7 @@ const baseURL = "http://127.0.0.1:8000/api/rooms";
 
 
 export const usePost = (post) => {
-    console.log(post[1].id);
+    //console.log(post[1].id);
     return post;
 }
 
@@ -42,7 +42,6 @@ export default function WordleRooms(){
                 name: roomName,
                 status: "active",
                 game_type: "wordle",
-                user_id: 1
             }, 
             {
                 headers: {
