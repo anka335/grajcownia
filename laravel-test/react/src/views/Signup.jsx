@@ -86,7 +86,6 @@ export default function Signup(){
           await anonymousSignIn();
           setNick("Anon");
           setEmail("Brak");
-          //addUserToDatabase(user);
           navigate('/guestlayout/mainguestpage')
           console.log('You are logged in anonymously')
           const anon = await firebase.auth().currentUser;
