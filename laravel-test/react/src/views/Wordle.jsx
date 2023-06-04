@@ -122,7 +122,7 @@ export default function Wordle() {
         </main>
         <aside id="chat">
         <div id="chat_close"><div>X</div></div>
-        <span>partia anka335 anka323</span>
+        <span>partia {selector}, {guesser}</span>
         <div id="selector" onClick={handleSetSelector}>
              wybiera: {selector}
         </div>
