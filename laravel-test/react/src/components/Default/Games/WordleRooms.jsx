@@ -21,7 +21,6 @@ const baseURL = "http://127.0.0.1:8000/api/rooms";
 
 
 export const usePost = (post) => {
-    console.log(post[1].id);
     return post;
 }
 
@@ -41,8 +40,7 @@ export default function WordleRooms(){
             const res = axios.post(baseURL, {
                 name: roomName,
                 status: "active",
-                game_type: "wordle",
-                user_id: 1
+                game_type: "wordle"
             }, 
             {
                 headers: {
@@ -56,9 +54,9 @@ export default function WordleRooms(){
         }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         axios.get(baseURL).then((response) => {
-          setPost(response.data);
+            setPost(response.data);
         });
       }, []);
     

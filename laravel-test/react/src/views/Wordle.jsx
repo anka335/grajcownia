@@ -32,6 +32,10 @@ export default function Wordle() {
     const channelRoleChange = pusher.subscribe('role-room-' + data.id);
     const handleNewRoleChange = (data) => {
         console.log(data);
+        if(data.role == 'selector')
+            setSelector(data.name);
+        else if(data.role == 'guesser')
+            setGuesser(data.name);
     };
     channelRoleChange.bind('rolechange', handleNewRoleChange);
 
@@ -45,8 +49,6 @@ export default function Wordle() {
   }, []);
 
   const handleSetSelector = () => {
-    console.log('a');
-    
     if (selector != '')
       return;
     axios.post(
@@ -65,14 +67,21 @@ export default function Wordle() {
   };
 
   const handleSetGuesser = () => {
-    if (selector == ''){
-      if (user.displayName == null){
-        setGuesser('Anon');
-      }
-      else {
-        setGuesser(user.displayName);
-      }
-    }
+    if (guesser != '')
+      return;
+    axios.post(
+    'http://127.0.0.1:8000/api/roles',
+    {
+      role: "guesser",
+      roomId: data.id,
+      uid: user.uid
+    },
+    {
+      headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+    });
   };
 
   const handleSubmit = async (e) => {
