@@ -50,9 +50,9 @@ export default function Wordle() {
   }, []);
 
   const handleSetSelector = () => {
-    if (selector != '')
-      return;
-    axios.post(
+    //if (selector != '')
+      //return;
+    const response = axios.post(
     'http://127.0.0.1:8000/api/roles',
     {
       role: "selector",
@@ -65,11 +65,12 @@ export default function Wordle() {
             'Content-Type': 'application/json'
           }
     });
+    console.log(response);
   };
 
   const handleSetGuesser = () => {
-    if (guesser != '')
-      return;
+    //if (guesser != '' && guesser)
+      //return;
     axios.post(
     'http://127.0.0.1:8000/api/roles',
     {

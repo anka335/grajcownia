@@ -28,7 +28,6 @@ export default function WordleRooms(){
     const [visible, setVisible] = useState(false);
     const [input, setInput] = useState('');
     const [post, setPost] = React.useState(null);
-
     function handleClick(){
         setVisible(!visible);
     }
