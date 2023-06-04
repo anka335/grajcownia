@@ -4,6 +4,11 @@ import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
 import { useState } from "react";
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import axios from 'axios';
+import { set } from 'lodash';
+import { auth } from '../firebase.jsx';
 
 const SignupLink = styled(StyledLink)`
   margin-left: 3px;
@@ -15,15 +20,43 @@ const LoginLink = styled(StyledLink)`
 export default function MainPage(){
       const [error, setError] = useState('');
       const navigate = useNavigate();
+      const [password, setPassword] = useState('');
+      const [email, setEmail] = useState('');
+      const [nick, setNick] = useState('');
       const { anonymousSignIn } = UserAuth();
-    
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError('')
-        try {
-          await anonymousSignIn()
-          //navigate('/guestlayout/mainguestpage')
-          //console.log('You are logged in anonymously')
+
+    async function addUserToDatabase(user) {
+      try {
+          const response = await axios.post('http://127.0.0.1:8000/api/users', {
+              name: nick,
+              email: email,
+              uid: user.uid
+          }, 
+          {
+              headers: {
+                  'Key': 'Accept',
+                  'Content-Type': 'application/json'
+              }
+          });
+          console.log('Utworzono konto użytkownika w bazie danych:', response.data);
+      } catch (error) {
+          console.error('Błąd podczas dodawania użytkownika do bazy danych:', error);
+      }
+  }
+
+  const onAnonymous = async (e) => {
+      e.preventDefault();
+      setError('')
+      try {
+          await anonymousSignIn();
+          setNick("Anon");
+          setEmail("Brak");
+          //addUserToDatabase(user);
+          navigate('/guestlayout/mainguestpage')
+          console.log('You are logged in anonymously')
+          const anon = await firebase.auth().currentUser;
+          console.log(anon);
+          addUserToDatabase(anon);
         } catch (e) {
           setError(e.message)
           //console.log(e.message)
@@ -38,7 +71,7 @@ export default function MainPage(){
             <section>
                 <SignupLink to="/signup">zarejestruj się</SignupLink>
                 <LoginLink to="/login">zaloguj się</LoginLink>
-                <button onClick={handleSubmit} className="light-button">graj jako gość</button>
+                <button onClick={onAnonymous} className="light-button">graj jako gość</button>
             </section>
         </div>
     )

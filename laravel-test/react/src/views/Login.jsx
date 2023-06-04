@@ -3,6 +3,11 @@ import 'firebaseui/dist/firebaseui.css';
 import { StyledLink } from "../NavStyle";
 import { useNavigate } from 'react-router-dom';
 import { UserAuth } from '../contexts/AuthContext';
+import axios from 'axios';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import { set } from 'lodash';
+import { auth } from '../firebase.jsx';
 
 export default function Login() {
 
@@ -13,6 +18,7 @@ export default function Login() {
       const { signIn } = UserAuth();
       const { anonymousSignIn } = UserAuth();
       const { user } = UserAuth();
+      const [nick, setNick] = useState('');
     
       const handleSubmit = async (e) => {
         e.preventDefault();
@@ -26,18 +32,43 @@ export default function Login() {
           //console.log(e.message)
         }
       };
+
+      async function addUserToDatabase(user) {
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/users', {
+                name: nick,
+                email: email,
+                uid: user.uid
+            }, 
+            {
+                headers: {
+                    'Key': 'Accept',
+                    'Content-Type': 'application/json'
+                }
+            });
+            console.log('Utworzono konto użytkownika w bazie danych:', response.data);
+        } catch (error) {
+            console.error('Błąd podczas dodawania użytkownika do bazy danych:', error);
+        }
+    }
+
       const onAnonymous = async (e) => {
         e.preventDefault();
         setError('')
         try {
-          await anonymousSignIn()
-          //navigate('/guestlayout/mainguestpage')
-          //console.log('You are logged in anonymously')
+          await anonymousSignIn();
+          setNick("Anon");
+          setEmail("Brak");
+          navigate('/guestlayout/mainguestpage')
+          console.log('You are logged in anonymously')
+          const anon = await firebase.auth().currentUser;
+          console.log(anon);
+          addUserToDatabase(anon);
         } catch (e) {
           setError(e.message)
           //console.log(e.message)
         }
-    }
+      }
 
     return(
         <div className="authentication">
