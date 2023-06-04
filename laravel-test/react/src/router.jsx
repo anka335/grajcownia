@@ -53,16 +53,23 @@ const router = createBrowserRouter([
         {
                 path: "/testroom/:roomid",
                 loader: async ({request, params}) => {
-                    const user = firebase.auth().currentUser;
-                    console.log("user: ", user);
-                    if (user == null){
-                        console.log("N U L L");
-                        return <Navigate to="/starterpage" />
-                    }
-                    const gameURL = "http://127.0.0.1:8000/api/rooms/" + params.roomid;
-                    const response = await axios.get(gameURL);
-                    const data = response.data;
-                    return data;
+                    return new Promise((resolve, reject) => {
+                        firebase.auth().onAuthStateChanged(async (user) => {
+                            if (user) {
+                                console.log("user: ", user);
+                                const gameURL = "http://127.0.0.1:8000/api/rooms/" + params.roomid;
+                                try {
+                                    const response = await axios.get(gameURL);
+                                    const data = response.data;
+                                    resolve(data);
+                                } catch (error) {
+                                    reject(error);
+                                }
+                            } else {
+                                resolve(<Navigate to="/starterpage" />);
+                            }
+                        });
+                    });
                 },
                 element: <Wordle/>
         },
