@@ -39,6 +39,8 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react"
 import { useNavigate } from "react-router-dom";
+import { UserAuth } from "./contexts/AuthContext.jsx";
+import firebase from 'firebase/compat/app';
 
 const baseURL = "http://127.0.0.1:8000/api/rooms";
 
@@ -48,6 +50,22 @@ const baseURL = "http://127.0.0.1:8000/api/rooms";
   }));*/
 
 const router = createBrowserRouter([
+        {
+                path: "/testroom/:roomid",
+                loader: async ({request, params}) => {
+                    const user = firebase.auth().currentUser;
+                    console.log("user: ", user);
+                    if (user == null){
+                        console.log("N U L L");
+                        return <Navigate to="/starterpage" />
+                    }
+                    const gameURL = "http://127.0.0.1:8000/api/rooms/" + params.roomid;
+                    const response = await axios.get(gameURL);
+                    const data = response.data;
+                    return data;
+                },
+                element: <Wordle/>
+        },
         {
             path: '/',
             element: <ProtectedUserRoute><StartLayout/></ProtectedUserRoute>,
@@ -59,16 +77,6 @@ const router = createBrowserRouter([
                 {
                     path: '/userlayout',
                     element: <Navigate to="/userlayout/mainuserpage" />
-                },
-                {
-                    path: "/testroom/:roomid",
-                    loader: async ({request, params}) => {
-                        const gameURL = "http://127.0.0.1:8000/api/rooms/" + params.roomid;
-                        const response = await axios.get(gameURL);
-                        const data = response.data;
-                        return data;
-                    },
-                    element: <Wordle/>
                 },
                 {
                     path: '/userlayout',
@@ -171,16 +179,6 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Navigate to="/guestlayout/mainguestpage" />
-            },
-            {
-                path: "/testroom/:roomid",
-                loader: async ({request, params}) => {
-                    const gameURL = "http://127.0.0.1:8000/api/rooms/" + params.roomid;
-                    const response = await axios.get(gameURL);
-                    const data = response.data;
-                    return data;
-                },
-                element: <Wordle/>
             },
             {
                 path: '/guestlayout',
