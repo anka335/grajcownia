@@ -7,7 +7,7 @@ const ProtectedAnonUserRoute = ({ children }) => {
 
   if (user && !(user?.isAnonymous) && user.uid !== undefined) {
     console.log("(anonymous user check) go to user mainpage user: ", user);
-    return <Navigate to='/mainuserpage' />;
+    return <Navigate to='/userlayout/mainuserpage' />;
   } else if (!user) {
     console.log("(anonymous user check) go to guest mainpage user: ", user);
     return <Navigate to='/starterpage' />;

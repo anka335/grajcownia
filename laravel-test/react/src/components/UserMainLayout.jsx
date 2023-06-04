@@ -10,7 +10,7 @@ const FinalLink = styled(StyledLink)`
     margin-left: 30px;
 `;
 
-export default function DefaultLayout() {
+export default function UserMainLayout() {
 
     const { user, logout } = UserAuth();
     const navigate = useNavigate();
@@ -28,7 +28,7 @@ export default function DefaultLayout() {
         <div className="MP">
         <header>
             <div className="MP_left">
-                <Link to="/mainuserpage"><img src={Logo} height={50} /></Link>
+                <Link to="/userlayout/mainuserpage"><img src={Logo} height={50} /></Link>
             </div>
             <div className="MP_right">
                 

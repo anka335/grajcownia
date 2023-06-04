@@ -12,15 +12,15 @@ export default function LeftBar(){
     return(
         <aside className="MP_leftbar">
             <ul>
-            <li><FinalLink to="/games">gry</FinalLink></li>
+            <li><FinalLink to="/userlayout/games">gry</FinalLink></li>
             <div className="MP_line"></div>
-            <li><FinalLink to="/ranking">ranking</FinalLink></li>
+            <li><FinalLink to="/userlayout/ranking">ranking</FinalLink></li>
             <div className="MP_line"></div>
-            <li><FinalLink to="/usersettings">ustawienia</FinalLink></li>
+            <li><FinalLink to="/userlayout/usersettings">ustawienia</FinalLink></li>
             <div className="MP_line"></div>
-            <li><FinalLink to="/friends">znajomi</FinalLink></li>
+            <li><FinalLink to="/userlayout/friends">znajomi</FinalLink></li>
             <div className="MP_line"></div>
-            <li><FinalLink to="/stats">statystyki</FinalLink></li>
+            <li><FinalLink to="/userlayout/stats">statystyki</FinalLink></li>
             </ul>
         </aside>
     )

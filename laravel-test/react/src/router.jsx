@@ -2,7 +2,7 @@ import { Navigate, Routes, createBrowserRouter } from "react-router-dom";
 import NotFound from "./views/NotFound.jsx"
 import Login from "./views/Login.jsx";
 import Signup from "./views/Signup.jsx";
-import UserLayout from "./components/UserLayout.jsx";
+import UserMainLayout from "./components/UserMainLayout.jsx";
 import GuestLayout from "./components/GuestLayout.jsx";
 import MainGuestPage from "./views/MainGuestPage.jsx";
 import MainUserPage from "./views/MainUserPage.jsx";
@@ -50,15 +50,15 @@ const baseURL = "http://127.0.0.1:8000/api/rooms";
 const router = createBrowserRouter([
         {
             path: '/',
-            element: <ProtectedUserRoute><UserLayout/></ProtectedUserRoute>,
+            element: <ProtectedUserRoute><StartLayout/></ProtectedUserRoute>,
             children: [
                 {
                     path: '/',
-                    element: <Navigate to="/mainuserpage" />
+                    element: <Navigate to="/userlayout/mainuserpage" />
                 },
                 {
-                    path: '/mainuserpage',
-                    element: <MainUserPage />
+                    path: '/userlayout',
+                    element: <Navigate to="/userlayout/mainuserpage" />
                 },
                 {
                     path: "/testroom/:roomid",
@@ -71,65 +71,75 @@ const router = createBrowserRouter([
                     element: <Wordle/>
                 },
                 {
-                    path: '/games',
-                    element: <UserGames />
+                    path: '/userlayout',
+                    element: <UserMainLayout />,
+                    children: [
+                        {
+                            path: '/userlayout/mainuserpage',
+                            element: <MainUserPage />
+                        },
+                        {
+                            path: '/userlayout/games',
+                            element: <UserGames />
+                        },
+                        {
+                            path: '/userlayout/battleshiprooms',
+                            element: <BattleshipRooms />
+                        },
+                        {
+                            path: '/userlayout/checkersrooms',
+                            element: <CheckersRooms />
+                        },
+                        {
+                            path: '/userlayout/chessrooms',
+                            element: <ChessRooms />
+                        },
+                        {
+                            path: '/userlayout/wordlerooms',
+                            element: <WordleRooms />
+                        },
+                        {
+                            path: '/userlayout/ranking',
+                            element: <UserRanking />
+                        },
+                        {
+                            path: '/userlayout/battleshipranking',
+                            element: <BattleshipRanking />
+                        },
+                        {
+                            path: '/userlayout/checkersranking',
+                            element: <CheckersRanking />
+                        },
+                        {
+                            path: '/userlayout/chessranking',
+                            element: <ChessRanking />
+                        },
+                        {
+                            path: '/userlayout/wordleranking',
+                            element: <WordleRanking />
+                        },
+                        {
+                            path: '/userlayout/usersettings',
+                            element: <UserSettings />
+                        },
+                        {
+                            path: '/userlayout/whocanwatch',
+                            element: <WhoCanWatch />
+                        },
+                        {
+                            path: '/userlayout/modifyaccount',
+                            element: <ModifyAccount />
+                        },
+                        {
+                            path: '/userlayout/stats',
+                            element: <Stats />
+                        },
+                        {
+                            path: '/userlayout/friends',
+                            element: <Friends />
+                        }
+                    ]
                 },
-                {
-                    path: '/battleshiprooms',
-                    element: <BattleshipRooms />
-                },
-                {
-                    path: '/checkersrooms',
-                    element: <CheckersRooms />
-                },
-                {
-                    path: '/chessrooms',
-                    element: <ChessRooms />
-                },
-                {
-                    path: '/wordlerooms',
-                    element: <WordleRooms />
-                },
-                {
-                    path: '/ranking',
-                    element: <UserRanking />
-                },
-                {
-                    path: '/battleshipranking',
-                    element: <BattleshipRanking />
-                },
-                {
-                    path: '/checkersranking',
-                    element: <CheckersRanking />
-                },
-                {
-                    path: '/chessranking',
-                    element: <ChessRanking />
-                },
-                {
-                    path: '/wordleranking',
-                    element: <WordleRanking />
-                },
-                {
-                    path: '/usersettings',
-                    element: <UserSettings />
-                },
-                {
-                    path: '/whocanwatch',
-                    element: <WhoCanWatch />
-                },
-                {
-                    path: '/modifyaccount',
-                    element: <ModifyAccount />
-                },
-                {
-                    path: '/stats',
-                    element: <Stats />
-                },
-                {
-                    path: '/friends',
-                    element: <Friends />
-                }
             ]
         },
     {
@@ -175,22 +185,6 @@ const router = createBrowserRouter([
             {
                 path: '/guestlayout',
                 element: <Navigate to="/guestlayout/mainguestpage" />
-            },
-            {
-                path: '/wordle',
-                element: <Wordle/>
-            },
-            {
-                path: '/Battleship',
-                element: <Battleship/>
-            },
-            {
-                path: '/checkers',
-                element: <Checkers/>
-            },
-            {
-                path: '/Chess',
-                element: <Chess/>
             },
             {
                 path: '/guestlayout',

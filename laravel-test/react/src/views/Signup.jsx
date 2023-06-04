@@ -7,6 +7,8 @@ import { validate } from 'email-validator';
 import { UserAuth } from '../contexts/AuthContext.jsx';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { set } from 'lodash';
+import { auth } from '../firebase.jsx';
 const schema_pw = new passwordValidator();
 
 schema_pw
@@ -81,9 +83,15 @@ export default function Signup(){
         e.preventDefault();
         setError('')
         try {
-          await anonymousSignIn()
+          await anonymousSignIn();
+          setNick("Anon");
+          setEmail("Brak");
+          //addUserToDatabase(user);
           navigate('/guestlayout/mainguestpage')
-          //console.log('You are logged in anonymously')
+          console.log('You are logged in anonymously')
+          const anon = await firebase.auth().currentUser;
+          console.log(anon);
+          addUserToDatabase(anon);
         } catch (e) {
           setError(e.message)
           //console.log(e.message)

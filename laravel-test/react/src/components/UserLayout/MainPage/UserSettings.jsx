@@ -11,8 +11,8 @@ export default function UserSettings(){
         <div>
             <p>Konto: feofaeioaefip</p>
             <p>email: elja@gmail.com</p>
-            <p><FinalLink to="/modifyaccount">modyfikuj konto</FinalLink></p>
-            <p><FinalLink to="/whocanwatch">kto może oglądać mój profil</FinalLink></p>
+            <p><FinalLink to="/userlayout/modifyaccount">modyfikuj konto</FinalLink></p>
+            <p><FinalLink to="/userlayout/whocanwatch">kto może oglądać mój profil</FinalLink></p>
             <div id="Outlet_ChatBtn">
                 <Settings />
             </div>
