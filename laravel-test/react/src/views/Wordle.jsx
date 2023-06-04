@@ -12,24 +12,25 @@ export default function Wordle() {
   const [guesser, setGuesser] = useState('');
   const [selector, setSelector] = useState('');
 
-  const data = useLoaderData().data;
+  const data = useLoaderData();
   if (!data) {
     return <Navigate to="/" />;
   }
-
   useEffect(() => {
     Pusher.logToConsole = true;
-
+    setSelector(data.selectorName);
+    setGuesser(data.guesserName);
+    console.log(data);
     const pusher = new Pusher('17fe7f4b4a52d62f2e3f', {
       cluster: 'eu'
     });
-    const channelChat = pusher.subscribe('game-room-' + data.id);
+    const channelChat = pusher.subscribe('game-room-' + data.roomInfo.id);
     const handleNewMessage = (data) => {
       setMessages((prevMessages) => [...prevMessages, data]);
     };
     channelChat.bind('message', handleNewMessage);
 
-    const channelRoleChange = pusher.subscribe('role-room-' + data.id);
+    const channelRoleChange = pusher.subscribe('role-room-' + data.roomInfo.id);
     const handleNewRoleChange = (data) => {
         console.log(data);
         if(data.role == 'selector')
@@ -42,8 +43,8 @@ export default function Wordle() {
     return () => {
       channelChat.unbind('message', handleNewMessage);
       channelRoleChange.unbind('rolechange', handleNewRoleChange);
-      pusher.unsubscribe('game-room-' + data.id);
-      pusher.unsubscribe('role-room-' + data.id);
+      pusher.unsubscribe('game-room-' + data.roomInfo.id);
+      pusher.unsubscribe('role-room-' + data.roomInfo.id);
       pusher.disconnect();
     };
   }, []);
@@ -55,7 +56,7 @@ export default function Wordle() {
     'http://127.0.0.1:8000/api/roles',
     {
       role: "selector",
-      roomId: data.id,
+      roomId: data.roomInfo.id,
       uid: user.uid
     },
     {
@@ -73,7 +74,7 @@ export default function Wordle() {
     'http://127.0.0.1:8000/api/roles',
     {
       role: "guesser",
-      roomId: data.id,
+      roomId: data.roomInfo.id,
       uid: user.uid
     },
     {
@@ -86,11 +87,12 @@ export default function Wordle() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(data.roomInfo.id);
     axios.post(
         'http://127.0.0.1:8000/api/messages',
         {
           message: message,
-          roomId: data.id,
+          roomId: data.roomInfo.id,
           username: user.displayName
         },
         {

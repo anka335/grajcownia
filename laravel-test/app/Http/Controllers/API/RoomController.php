@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Room;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Pusher\Pusher;
 class RoomController extends Controller
@@ -49,7 +50,27 @@ class RoomController extends Controller
      */
     public function show(Room $room)
     {
-        return response()->json(['data' => $room]);
+        $selector = User::where('id', $room->selector_id)->first();
+        $guesser = User::where('id', $room->guesser_id)->first();
+        if($selector)
+        {
+            if($selector->name)
+                $s_name = $selector->name;
+            else
+                $s_name = "Anon";
+        }
+        else
+            $s_name = "";
+        if($guesser)
+        {
+            if($guesser->name)
+                $g_name = $guesser->name;
+            else
+                $g_name = "Anon";
+        }
+        else
+            $g_name = "";
+        return response()->json(['roomInfo' => $room, 'selectorName' => $s_name, 'guesserName' => $g_name]);
     }
 
     /**
