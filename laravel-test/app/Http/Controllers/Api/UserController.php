@@ -27,8 +27,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
         //add some validation
+        $isUidAvailable = User::where('uid', $request->input('uid'))->exists();
+        if($isUidAvailable)
+            return response()->json(['error' => 'Użytkownik o tym uid już istnieje'], 400);
         $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
