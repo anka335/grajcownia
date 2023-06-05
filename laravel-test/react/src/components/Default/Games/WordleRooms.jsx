@@ -34,6 +34,7 @@ export default function WordleRooms(){
 
     const handleSubmit = (e) => {
         const roomName = input;
+        setVisible(false);
         e.preventDefault();
         try {
             const res = axios.post(baseURL, {

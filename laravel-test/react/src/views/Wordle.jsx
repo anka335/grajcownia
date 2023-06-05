@@ -171,6 +171,25 @@ export default function Wordle() {
     setMessage('');
   };
 
+  const handlePasswdSubmit = (e) => {
+    e.preventDefault();
+    const passwd = input;
+    setVisible(false);
+    axios.post(
+      'http://127.0.0.1:8000/api/roles',
+      {
+        uid: user.uid,
+        secret: passwd,
+        roomId: data.roomInfo.id
+      },
+      {
+        headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            }
+      });
+  }
+
   function handleClick(){
     setVisible(!visible);
 }
@@ -186,7 +205,7 @@ export default function Wordle() {
         </aside>    
         <main id="wordle_main">
         <div className={`container${ visible ? ' wordle_form' : ' wordle_form_not_visible'}`}>
-          <form className="wordle_form" style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
+          <form onSubmit={handlePasswdSubmit} className="wordle_form" style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
             <input placeholder="podaj hasło" value={input} onInput={e => setInput(e.target.value)}/>
             <input type="submit" className="game_form_btn"/>
           </form>
