@@ -26,6 +26,7 @@ export default function Wordle() {
     return <Navigate to="/" />;
   }
   useEffect(() => {
+    console.log(data);
     if (inputRefs.current[activeCell.row]) {
         inputRefs.current[activeCell.row][activeCell.col].focus(); // Ustawienie focusu na pierwszym inputie po renderowaniu komponentu
       }
