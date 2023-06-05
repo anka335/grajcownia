@@ -99,7 +99,20 @@ export default function Wordle() {
       // Obsługa wysyłania zapytania na serwer po wciśnięciu Enter
       const guess = toLower(word[activeCell.row].join('')); // Konwersja tablicy liter na string
       console.log('Wysyłanie zapytania na serwer:', guess);
-      
+      const response = axios.post(
+        'http://127.0.0.1:8000/api/guess',
+        {
+          uid: user.uid,
+          word: guess,
+          roomId: data.roomInfo.id
+        },
+        {
+          headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              }
+        });
+        console.log(response);
     }
     else if(event.key === 'Backspace' && row === activeCell.row && col === activeCell.col)
     {
