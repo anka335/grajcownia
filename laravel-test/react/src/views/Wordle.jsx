@@ -17,7 +17,7 @@ export default function Wordle() {
   const [word, setWord] = useState(Array(6).fill(Array(5).fill(''))); // Inicjalizacja stanu dla pięciu liter
   const [activeCell, setActiveCell] = useState({ row: 0, col: 0 });
   const [input, setInput] = useState('');
-  const [color, setColor] = useState("     ");
+  const [color, setColor] = useState(Array(6).fill(Array(5).fill('')));
   const inputRefs = useRef([]); // Referencje do inputów tekstowych
   const data = useLoaderData();
   const [whichRow, setWhichRow] = useState(0);
@@ -68,7 +68,8 @@ export default function Wordle() {
 
     const channelGuessMade = pusher.subscribe('guess-room-' + data.roomInfo.id);
     const handleNewGuessMade = (data) => {
-        setColor(data.colors);
+        const c_arr = data.colors.split('');
+        color[data.row] = c_arr;
         setWhichRow(data.row);
         const arr = data.word.split('');
         word[data.row] = arr;
@@ -253,12 +254,12 @@ export default function Wordle() {
         {word.map((row, rowIndex) => (
             <div key={rowIndex} className="wordle_row">
             {row.map((letter, colIndex) => (
-                <div key={colIndex}  style={{backgroundColor: color[colIndex] == 'g' && (whichRow == rowIndex)? 'green': (color[colIndex] == 'y' && whichRow == rowIndex? 'yellow': 'white')}}>
+                <div key={colIndex}  style={{backgroundColor: color[rowIndex][colIndex] == 'g'? 'green': (color[rowIndex][colIndex] == 'y'? 'yellow': 'white')}}>
                   {isItGuesser ? (
                     <input 
                     type="text"
                     value={letter}
-                    style={{backgroundColor: color[colIndex] == 'g' && (whichRow == rowIndex)? 'green': (color[colIndex] == 'y' && whichRow == rowIndex? 'yellow': 'white')}}
+                    style={{backgroundColor: color[rowIndex][colIndex] == 'g'? 'green': (color[rowIndex][colIndex] == 'y'? 'yellow': 'white')}}
                     onChange={(event) => handleInputChange(event, rowIndex, colIndex)}
                     onKeyDown={(event) => handleKeyDown(event, rowIndex, colIndex)}
                     ref={(ref) => {
