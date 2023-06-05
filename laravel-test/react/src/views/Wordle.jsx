@@ -5,6 +5,7 @@ import Pusher from "pusher-js";
 import axios from "axios";
 import { UserAuth } from '../contexts/AuthContext';
 import { toLower } from "lodash";
+
 export default function Wordle() {
   const { user } = UserAuth();
   const [visible, setVisible] = useState(false);
@@ -21,6 +22,8 @@ export default function Wordle() {
   const inputRefs = useRef([]); // Referencje do inputów tekstowych
   const data = useLoaderData();
   const [whichRow, setWhichRow] = useState(0);
+  const [isItWinner, setIsItWinner] = useState(false);
+  const [isItLoser, setIsItLoser] = useState(false);
   
   if (!data) {
     return <Navigate to="/" />;
@@ -47,6 +50,7 @@ export default function Wordle() {
         console.log(data);
        
         if(data.role == 'selector'){
+          console.log("S E L E C T O R");
             setSelector(data.name);
             if (data.uid == user.uid){
               setIsItSelector(true);
@@ -55,14 +59,20 @@ export default function Wordle() {
             }
         }
         else if(data.role == 'guesser'){
+          console.log(" G U E S S E R");
             setGuesser(data.name);
+            console.log("data.uid == user.uid: ", data.uid == user.uid);
             if (data.uid == user.uid){
+              console.log('WESZLO GDZIE POWINNO');
               setIsItGuesser(true);
+              console.log("guesser: ", isItGuesser);
             }
             else {
+              console.log("WESZLO ZLE");
               setIsItGuesser(false);
             }
         }
+        console.log("selector: ", isItSelector, " guesser: ", isItGuesser, " data.role: ", data.role, " data.uid: ", data.uid, " user.uid: ", user.uid);
     };
     channelRoleChange.bind('rolechange', handleNewRoleChange);
 
@@ -73,13 +83,29 @@ export default function Wordle() {
         setWhichRow(data.row);
         const arr = data.word.split('');
         word[data.row] = arr;
+        console.log("K O L O R Y: ", data.colors);
         if(data.colors == "ggggg")
         {
-
+          console.log("W E S Z L O (guesser: ) ", isItGuesser, " (selector: ) ", isItSelector);
+          if (isItGuesser){
+            setIsItWinner(true);
+            console.log("WYGRAL AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+          }
+          if (isItSelector){
+            console.log("PRZEGRAL AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            setIsItLoser(true);
+          }
         }
         else if(data.row == 5)
         {
-
+          if (isItSelector){
+            console.log("WYGRAL AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            setIsItWinner(true);
+          }
+          if (isItGuesser){
+            console.log("PRZEGRAL AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            setIsItLoser(true);
+          }
         }
         else
         {
@@ -245,6 +271,14 @@ export default function Wordle() {
           </div>
         </aside>    
         <main id="wordle_main">
+        {isItWinner ? (
+          <div style>WYGRALES</div>
+        ): null}
+
+        {isItLoser ? (
+          <div>PRZEGRALES</div>
+        ): null}
+
         <div className={`container${ visible ? ' wordle_form' : ' wordle_form_not_visible'}`}>
           <form onSubmit={handlePasswdSubmit} className="wordle_form" style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
             <input placeholder="podaj hasło" value={input} onInput={e => setInput(e.target.value)}/>
