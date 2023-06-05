@@ -17,11 +17,13 @@ class RoleChange implements ShouldBroadcast
     public $roomId;
     public $role;
     public $name;
-    public function __construct($roomId, $role, $name)
+    public $uid;
+    public function __construct($roomId, $role, $name, $uid)
     {
         $this->roomId = $roomId;
         $this->role = $role;
         $this->name = $name;
+        $this->uid = $uid;
     }
 
     /**
