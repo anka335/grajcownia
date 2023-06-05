@@ -20,7 +20,7 @@ class ImportDictionary extends Migration
             return ['word' => $word];
         }, $words);
 
-        DB::table('dictionary')->insert($data); // Wstaw słowa do tabeli "dictionary"
+        DB::table('dictionaries')->insert($data); // Wstaw słowa do tabeli "dictionary"
     }
 
     /**
@@ -30,6 +30,6 @@ class ImportDictionary extends Migration
      */
     public function down()
     {
-        DB::table('dictionary')->truncate(); // Usuń wszystkie słowa z tabeli "dictionary"
+        DB::table('dictionaries')->truncate(); // Usuń wszystkie słowa z tabeli "dictionary"
     }
 }

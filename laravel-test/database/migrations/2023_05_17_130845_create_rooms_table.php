@@ -19,8 +19,9 @@ class CreateRoomsTable extends Migration
             $table->text('description')->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->enum('game_type', ['chess', 'checkers', 'battleships', 'wordle'])->default('wordle');
-            // inne pola
-
+            $table->string('secret_word')->nullable();
+            $table->string('colors')->nullable();
+            $table->string('guesses')->nullable();
             $table->unsignedBigInteger('guesser_id')->nullable()->default(null);
             $table->foreign('guesser_id')->references('id')->on('users')->onDelete('cascade');
 
