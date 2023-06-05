@@ -15,8 +15,6 @@ class guessMadeController extends Controller
         $word = $request->input('word');
         $roomId = $request->input('roomId');
         \Log::info($uid . " " . $word . " " . $roomId);
-        //$uid->$request->input('uid');
-        //$uid->$request->input('uid');
         $room = Room::where('id', $roomId)->first();
         if(!$room || !$room->guesser_id)
             return response()->json(['error' => 'Najpierw wybierz rolę zgadującego'], 400);
@@ -26,10 +24,9 @@ class guessMadeController extends Controller
         $doesWordExist = Dictionary::where('word', $word)->exists();
         if($doesWordExist)
         {
-            $secretWord = "limes";
-            /*= $room->secret_word;
+            $secretWord = $room->secret_word;
             if(!$secretWord)
-                return response()->json(['error' => 'Nie zostało ustawione hasło'], 400);*/
+                return response()->json(['error' => 'Nie zostało ustawione hasło'], 400);
             $colors = "";
             $length = strlen($word);
             for ($i = 0; $i < $length; $i++) {

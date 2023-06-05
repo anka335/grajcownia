@@ -14,7 +14,6 @@ class SecretController extends Controller
         $roomId = $request->input('roomId');
         $secret = $request->input('secret');
         $uid = $request->input('uid');
-
         $room = Room::where('id', $roomId)->first();
         if(!$room)
             return response()->json(['error' => 'Nie istnieje taki pokój'], 400);
@@ -25,9 +24,14 @@ class SecretController extends Controller
             return response()->json(['error' => 'Nie jesteś wybierającym'], 400);
         $doesWordExist = Dictionary::where('word', $secret)->exists();
         if(!$doesWordExist)
-            response()->json(['error' => 'Podane słowo nie istnieje'], 400);
+            return response()->json(['error' => 'Podane słowo nie istnieje'], 400);
         
         if($room->status == 'active')
-            response()->json(['error' => 'Gra już trwa, nie możesz zmienić hasła'], 400);
+            return response()->json(['error' => 'Gra już trwa, nie możesz zmienić hasła'], 400);
+        
+        Room::where('id', $roomId)->update(['secret_word' => $secret]);
+        if($room->guesser_id)
+            Room::where('id', $roomId)->update(['status' => 'active']);
+        return response()->json(['data' => 'Ustawiono hasło na: ' . $secret], 200);
     }
 }

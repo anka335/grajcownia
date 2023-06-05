@@ -39,7 +39,7 @@ export default function WordleRooms(){
         try {
             const res = axios.post(baseURL, {
                 name: roomName,
-                status: "active",
+                status: "inactive",
                 game_type: "wordle"
             }, 
             {

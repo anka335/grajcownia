@@ -176,7 +176,7 @@ export default function Wordle() {
     const passwd = input;
     setVisible(false);
     axios.post(
-      'http://127.0.0.1:8000/api/roles',
+      'http://127.0.0.1:8000/api/secret',
       {
         uid: user.uid,
         secret: passwd,
