@@ -7,12 +7,15 @@ import { UserAuth } from '../contexts/AuthContext';
 import { toLower } from "lodash";
 export default function Wordle() {
   const { user } = UserAuth();
+  const [visible, setVisible] = useState(false);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [guesser, setGuesser] = useState('');
   const [selector, setSelector] = useState('');
+  const [isItSelector, setIsItSelector] = useState(false);
   const [word, setWord] = useState(Array(6).fill(Array(5).fill(''))); // Inicjalizacja stanu dla pięciu liter
   const [activeCell, setActiveCell] = useState({ row: 0, col: 0 });
+  const [input, setInput] = useState('');
   const inputRefs = useRef([]); // Referencje do inputów tekstowych
   const data = useLoaderData();
   
@@ -39,10 +42,18 @@ export default function Wordle() {
     const channelRoleChange = pusher.subscribe('role-room-' + data.roomInfo.id);
     const handleNewRoleChange = (data) => {
         console.log(data);
-        if(data.role == 'selector')
+       
+        if(data.role == 'selector'){
             setSelector(data.name);
-        else if(data.role == 'guesser')
+            if (data.uid == user.uid){
+              setIsItSelector(true);
+            } else {
+              setIsItSelector(false);
+            }
+        }
+        else if(data.role == 'guesser'){
             setGuesser(data.name);
+        }
     };
     channelRoleChange.bind('rolechange', handleNewRoleChange);
 
@@ -160,6 +171,10 @@ export default function Wordle() {
     setMessage('');
   };
 
+  function handleClick(){
+    setVisible(!visible);
+}
+
   return (
     <div className="MP">
       <Header />
@@ -170,6 +185,12 @@ export default function Wordle() {
           </div>
         </aside>    
         <main id="wordle_main">
+        <div className={`container${ visible ? ' wordle_form' : ' wordle_form_not_visible'}`}>
+          <form className="wordle_form" style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
+            <input placeholder="podaj hasło" value={input} onInput={e => setInput(e.target.value)}/>
+            <input type="submit" className="game_form_btn"/>
+          </form>
+        </div>
         {word.map((row, rowIndex) => (
             <div key={rowIndex} className="wordle_row">
             {row.map((letter, colIndex) => (
@@ -201,6 +222,9 @@ export default function Wordle() {
         <div id="guesser" onClick={handleSetGuesser}>
                 zgaduje: {guesser}
         </div>
+        {isItSelector ? (
+          <button onClick={handleClick}>wybierz hasło</button>
+        ) : null}
           <div id="chat_box" className="stats_scrollbar">
             {messages.map((message, index) => (
               <p key={index}>{message.username}: {message.message}</p>
