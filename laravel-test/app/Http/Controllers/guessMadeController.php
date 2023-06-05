@@ -42,11 +42,20 @@ class guessMadeController extends Controller
             }
         }
         event(new guessMade($word, $colors, $roomId, $row));
+        if($room->colors)
+        {
+            Room::where('id', $roomId)->update(['colors' => $room->colors . " " . $colors]);
+            Room::where('id', $roomId)->update(['guesses' => $room->guesses . " " . $word]);
+        }
+        else
+        {
+            Room::where('id', $roomId)->update(['colors' => $colors]);
+            Room::where('id', $roomId)->update(['guesses' => $word]);
+        }
         if($colors == "ggggg" || $row == 5)
         {
             Room::where('id', $roomId)->update(['status' => 'inactive']);
             Room::where('id', $roomId)->update(['secret_word' => null]);
-
         }
         return response()->json(['data' => 'Gites']);
     }
