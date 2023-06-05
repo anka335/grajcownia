@@ -14,6 +14,7 @@ class guessMadeController extends Controller
         $uid = $request->input('uid');
         $word = $request->input('word');
         $roomId = $request->input('roomId');
+        $row = $request->input('row');
         \Log::info($uid . " " . $word . " " . $roomId);
         $room = Room::where('id', $roomId)->first();
         if(!$room || !$room->guesser_id)
@@ -40,7 +41,13 @@ class guessMadeController extends Controller
                     $colors = $colors . "b";
                 }
             }
-            event(new guessMade($word, $colors, $roomId));
+            event(new guessMade($word, $colors, $roomId, $row));
+            if($colors == "ggggg")
+            {
+                Room::where('id', $roomId)->update(['status' => 'inactive']);
+                Room::where('id', $roomId)->update(['secret_word' => null]);
+
+            }
             return response()->json(['data' => 'Gites']);
         }
         else

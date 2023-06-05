@@ -26,6 +26,8 @@ class RoleChangeController extends Controller
                 {
                     event(new RoleChange($roomId, $role, "", null));
                     Room::where('id', $roomId)->update(['selector_id' => null]);
+                    Room::where('id', $roomId)->update(['status' => 'inactive']);
+                    Room::where('id', $roomId)->update(['secret_word' => null]);
                 }
                 else
                     return response()->json(['error' => 'Rola jest już zajęta w tym pokoju'], 400);
@@ -76,7 +78,8 @@ class RoleChangeController extends Controller
                     return response()->json(['error' => 'Brak użytkownika o podanym uid w bazie danych'], 400);
                 event(new RoleChange($roomId, $role, $name, $uid));
                 Room::where('id', $roomId)->update(['guesser_id' => $user->id]);
-                if($room->selector_id && $room->secret)
+                \Log::info($room->selector_id . " " . $room->secret_word);
+                if($room->selector_id && $room->secret_word)
                     Room::where('id', $roomId)->update(['status' => 'active']);
             }
         }

@@ -17,11 +17,13 @@ class guessMade implements ShouldBroadcast
     public $word;
     public $colors;
     public $roomId;
-    public function __construct($word, $colors, $roomId)
+    public $row;
+    public function __construct($word, $colors, $roomId, $row)
     {
         $this->word = $word;
         $this->colors = $colors;
         $this->roomId = $roomId;
+        $this->row = $row;
     }
 
     /**
