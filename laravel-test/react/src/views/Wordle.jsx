@@ -72,6 +72,9 @@ export default function Wordle() {
         console.log("AAAAAAAAA", data.colors);
         setColor(data.colors);
         setWhichRow(data.row);
+        const arr = data.word.split('');
+        word[data.row] = arr;
+        console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB: ", word[data.row], "   ", data.word);
     };
     channelGuessMade.bind('guess', handleNewGuessMade);
 
@@ -91,6 +94,7 @@ export default function Wordle() {
         newWord[row] = [...newWord[row]];
         newWord[row][col] = event.target.value.toUpperCase();
         setWord(newWord);
+        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: ", word[0][1]);
       
         if (event.target.value.length === 1 && col < inputRefs.current[row].length - 1) {
           setActiveCell({row: row, col: col+1});
@@ -254,7 +258,9 @@ export default function Wordle() {
                     inputRefs.current[rowIndex][colIndex] = ref;
                     }}
                     readOnly={!(rowIndex === activeCell.row && colIndex === activeCell.col)} // Ustawienie readOnly dla nieaktywnej komórki
-                />  ) : null }
+                />  ) :  
+                    <div>{word[rowIndex][colIndex]}</div>
+                }
                 </div>
             ))}
             </div>
