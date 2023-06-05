@@ -21,7 +21,7 @@ use App\Http\Controllers\SecretController;
 Route::post('/messages', [ChatController::class, 'message']);
 Route::post('/roles', [RoleChangeController::class, 'role']);
 Route::post('/guess', [guessMadeController::class, 'guess']);
-Route::post('/secret', [SecretController:class, 'setSecret']);
+Route::post('/secret', [SecretController::class, 'setSecret']);
 Route::apiResource('/users', UserController::class);
 Route::delete('/users/delete/uid/{uid}', [UserController::class, 'deleteByUid']);
 Route::apiResource('/rooms', RoomController::class);
