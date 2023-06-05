@@ -20,6 +20,7 @@ export default function Wordle() {
   const [color, setColor] = useState("     ");
   const inputRefs = useRef([]); // Referencje do inputów tekstowych
   const data = useLoaderData();
+  const [whichRow, setWhichRow] = useState(0);
   
   if (!data) {
     return <Navigate to="/" />;
@@ -70,6 +71,7 @@ export default function Wordle() {
         console.log(data);
         console.log("AAAAAAAAA", data.colors);
         setColor(data.colors);
+        setWhichRow(data.row);
     };
     channelGuessMade.bind('guess', handleNewGuessMade);
 
@@ -237,12 +239,12 @@ export default function Wordle() {
         {word.map((row, rowIndex) => (
             <div key={rowIndex} className="wordle_row">
             {row.map((letter, colIndex) => (
-                <div key={colIndex} style={{backgroundColor: color[colIndex] == 'g'? 'green': (color[colIndex] == 'y'? 'yellow': 'white')}}>
+                <div key={colIndex} style={{backgroundColor: color[colIndex] == 'g' && (whichRow == rowIndex)? 'green': (color[colIndex] == 'y' && whichRow == rowIndex? 'yellow': 'white')}}>
                   {isItGuesser ? (
                     <input 
                     type="text"
                     value={letter}
-                    style={{backgroundColor: color[colIndex] == 'g'? 'green': (color[colIndex] == 'y'? 'yellow': 'white')}}
+                    style={{backgroundColor: color[colIndex] == 'g' && (whichRow == rowIndex)? 'green': (color[colIndex] == 'y' && whichRow == rowIndex? 'yellow': 'white')}}
                     onChange={(event) => handleInputChange(event, rowIndex, colIndex)}
                     onKeyDown={(event) => handleKeyDown(event, rowIndex, colIndex)}
                     ref={(ref) => {
