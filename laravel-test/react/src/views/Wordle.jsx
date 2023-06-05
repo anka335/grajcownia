@@ -94,7 +94,6 @@ export default function Wordle() {
         newWord[row] = [...newWord[row]];
         newWord[row][col] = event.target.value.toUpperCase();
         setWord(newWord);
-        console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA: ", word[0][1]);
       
         if (event.target.value.length === 1 && col < inputRefs.current[row].length - 1) {
           setActiveCell({row: row, col: col+1});
@@ -243,7 +242,7 @@ export default function Wordle() {
         {word.map((row, rowIndex) => (
             <div key={rowIndex} className="wordle_row">
             {row.map((letter, colIndex) => (
-                <div key={colIndex} style={{backgroundColor: color[colIndex] == 'g' && (whichRow == rowIndex)? 'green': (color[colIndex] == 'y' && whichRow == rowIndex? 'yellow': 'white')}}>
+                <div key={colIndex}  style={{backgroundColor: color[colIndex] == 'g' && (whichRow == rowIndex)? 'green': (color[colIndex] == 'y' && whichRow == rowIndex? 'yellow': 'white')}}>
                   {isItGuesser ? (
                     <input 
                     type="text"
