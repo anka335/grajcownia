@@ -13,6 +13,7 @@ export default function Wordle() {
   const [guesser, setGuesser] = useState('');
   const [selector, setSelector] = useState('');
   const [isItSelector, setIsItSelector] = useState(false);
+  const [isItGuesser, setIsItGuesser] = useState(false);
   const [word, setWord] = useState(Array(6).fill(Array(5).fill(''))); // Inicjalizacja stanu dla pięciu liter
   const [activeCell, setActiveCell] = useState({ row: 0, col: 0 });
   const [input, setInput] = useState('');
@@ -53,6 +54,12 @@ export default function Wordle() {
         }
         else if(data.role == 'guesser'){
             setGuesser(data.name);
+            if (data.uid == user.uid){
+              setIsItGuesser(true);
+            }
+            else {
+              setIsItGuesser(false);
+            }
         }
     };
     channelRoleChange.bind('rolechange', handleNewRoleChange);
@@ -60,6 +67,7 @@ export default function Wordle() {
     const channelGuessMade = pusher.subscribe('guess-room-' + data.roomInfo.id);
     const handleNewGuessMade = (data) => {
         console.log(data);
+        console.log("AAAAAAAAA", data.word);
     };
     channelGuessMade.bind('guess', handleNewGuessMade);
 
@@ -214,7 +222,8 @@ export default function Wordle() {
             <div key={rowIndex} className="wordle_row">
             {row.map((letter, colIndex) => (
                 <div key={colIndex}>
-                <input
+                  {isItGuesser ? (
+                    <input 
                     type="text"
                     value={letter}
                     onChange={(event) => handleInputChange(event, rowIndex, colIndex)}
@@ -226,7 +235,7 @@ export default function Wordle() {
                     inputRefs.current[rowIndex][colIndex] = ref;
                     }}
                     readOnly={!(rowIndex === activeCell.row && colIndex === activeCell.col)} // Ustawienie readOnly dla nieaktywnej komórki
-                />
+                />  ) : null }
                 </div>
             ))}
             </div>
