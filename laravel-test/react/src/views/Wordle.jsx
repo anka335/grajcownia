@@ -17,6 +17,7 @@ export default function Wordle() {
   const [word, setWord] = useState(Array(6).fill(Array(5).fill(''))); // Inicjalizacja stanu dla pięciu liter
   const [activeCell, setActiveCell] = useState({ row: 0, col: 0 });
   const [input, setInput] = useState('');
+  const [color, setColor] = useState("     ");
   const inputRefs = useRef([]); // Referencje do inputów tekstowych
   const data = useLoaderData();
   
@@ -67,7 +68,8 @@ export default function Wordle() {
     const channelGuessMade = pusher.subscribe('guess-room-' + data.roomInfo.id);
     const handleNewGuessMade = (data) => {
         console.log(data);
-        console.log("AAAAAAAAA", data.word);
+        console.log("AAAAAAAAA", data.colors);
+        setColor(data.colors);
     };
     channelGuessMade.bind('guess', handleNewGuessMade);
 
@@ -104,7 +106,8 @@ export default function Wordle() {
         {
           uid: user.uid,
           word: guess,
-          roomId: data.roomInfo.id
+          roomId: data.roomInfo.id,
+          row: activeCell.row
         },
         {
           headers: {
@@ -234,11 +237,12 @@ export default function Wordle() {
         {word.map((row, rowIndex) => (
             <div key={rowIndex} className="wordle_row">
             {row.map((letter, colIndex) => (
-                <div key={colIndex}>
+                <div key={colIndex} style={{backgroundColor: color[colIndex] == 'g'? 'green': (color[colIndex] == 'y'? 'yellow': 'white')}}>
                   {isItGuesser ? (
                     <input 
                     type="text"
                     value={letter}
+                    style={{backgroundColor: color[colIndex] == 'g'? 'green': (color[colIndex] == 'y'? 'yellow': 'white')}}
                     onChange={(event) => handleInputChange(event, rowIndex, colIndex)}
                     onKeyDown={(event) => handleKeyDown(event, rowIndex, colIndex)}
                     ref={(ref) => {
