@@ -21,6 +21,8 @@ class guessMadeController extends Controller
         $guesser = User::where('id', $room->guesser_id)->first();
         if($guesser->uid != $uid)
             return response()->json(['error' => 'Nie jesteś zgadującym'], 400);
+        if($room->status == 'inactive')
+            return response()->json(['error' => 'Gra jeszcze się nie rozpoczęła'], 400);
         $doesWordExist = Dictionary::where('word', $word)->exists();
         if($doesWordExist)
         {
