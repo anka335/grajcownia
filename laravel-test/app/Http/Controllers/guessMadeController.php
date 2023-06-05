@@ -25,34 +25,29 @@ class guessMadeController extends Controller
         if($room->status == 'inactive')
             return response()->json(['error' => 'Gra jeszcze się nie rozpoczęła'], 400);
         $doesWordExist = Dictionary::where('word', $word)->exists();
-        if($doesWordExist)
-        {
-            $secretWord = $room->secret_word;
-            if(!$secretWord)
-                return response()->json(['error' => 'Nie zostało ustawione hasło'], 400);
-            $colors = "";
-            $length = strlen($word);
-            for ($i = 0; $i < $length; $i++) {
-                if ($word[$i] === $secretWord[$i]) {
-                    $colors = $colors . "g";
-                } else if (strpos($secretWord, $word[$i]) !== false) {
-                    $colors = $colors . "y";
-                } else {
-                    $colors = $colors . "b";
-                }
-            }
-            event(new guessMade($word, $colors, $roomId, $row));
-            if($colors == "ggggg")
-            {
-                Room::where('id', $roomId)->update(['status' => 'inactive']);
-                Room::where('id', $roomId)->update(['secret_word' => null]);
-
-            }
-            return response()->json(['data' => 'Gites']);
-        }
-        else
-        {
+        if(!$doesWordExist)
             return response()->json(['error' => 'Nie ma takiego słowa'], 400);
+        $secretWord = $room->secret_word;
+        if(!$secretWord)
+            return response()->json(['error' => 'Nie zostało ustawione hasło'], 400);
+        $colors = "";
+        $length = strlen($word);
+        for ($i = 0; $i < $length; $i++) {
+            if ($word[$i] === $secretWord[$i]) {
+                $colors = $colors . "g";
+            } else if (strpos($secretWord, $word[$i]) !== false) {
+                $colors = $colors . "y";
+            } else {
+                $colors = $colors . "b";
+            }
         }
+        event(new guessMade($word, $colors, $roomId, $row));
+        if($colors == "ggggg" || $row == 5)
+        {
+            Room::where('id', $roomId)->update(['status' => 'inactive']);
+            Room::where('id', $roomId)->update(['secret_word' => null]);
+
+        }
+        return response()->json(['data' => 'Gites']);
     }
 }

@@ -68,13 +68,24 @@ export default function Wordle() {
 
     const channelGuessMade = pusher.subscribe('guess-room-' + data.roomInfo.id);
     const handleNewGuessMade = (data) => {
-        console.log(data);
-        console.log("AAAAAAAAA", data.colors);
         setColor(data.colors);
         setWhichRow(data.row);
         const arr = data.word.split('');
         word[data.row] = arr;
-        console.log("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB: ", word[data.row], "   ", data.word);
+        if(data.colors == "ggggg")
+        {
+
+        }
+        else if(data.row == 5)
+        {
+
+        }
+        else
+        {
+          setActiveCell({row: data.row + 1, col: 0});
+          inputRefs.current[data.row + 1][0].focus();
+        }
+
     };
     channelGuessMade.bind('guess', handleNewGuessMade);
 
