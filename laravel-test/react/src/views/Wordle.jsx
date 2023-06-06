@@ -287,33 +287,33 @@ export default function Wordle() {
     <div className="MP">
       <Header />
       <section id="game_section">
-      {isItLoser ? (
-          <div style={{position: "absolute", width: "500px", height: "100px", marginLeft: "15vw", marginTop: "15vh"}}><img src={przegrana} style={{width: "500px", height: "100px"}}/></div>
-        ): null}
-        {isItWinner ? (
-          <div style={{position: "absolute", width: "500px", height: "100px", marginLeft: "15vw", marginTop: "15vh"}}><img src={wygrana} style={{width: "700px", height: "100px"}}/></div>
-        ): null}
         <aside id="game_win">
           <div>
-            zuzyte litery
           </div>
         </aside>    
         <main id="wordle_main">
+        {isItLoser ? (
+          <div  className="wordle_form" style={{position: "absolute", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "white", border: "3px solid #52796F", fontSize: "15px" }}>PRZEGRANA</div>
+        ): null}
+        {isItWinner ? (
+          <div  className="wordle_form" style={{position: "absolute", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", color: "white", border: "3px solid #52796F", fontSize: "15px" }}>WYGRANA</div>
+        ): null}
         <div className={`container${ visible ? ' wordle_form' : ' wordle_form_not_visible'}`}>
           <form onSubmit={handlePasswdSubmit} className="wordle_form" style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
             <input placeholder="podaj hasło" value={input} onInput={e => setInput(e.target.value)}/>
             <input type="submit" className="game_form_btn"/>
           </form>
+          
         </div>
         {word.map((row, rowIndex) => (
             <div key={rowIndex} className="wordle_row">
             {row.map((letter, colIndex) => (
-                <div key={colIndex}  style={{backgroundColor: color[rowIndex][colIndex] == 'g'? 'green': (color[rowIndex][colIndex] == 'y'? 'yellow': 'white')}}>
+                <div key={colIndex}  style={{backgroundColor: color[rowIndex][colIndex] == 'g'? '#52796F': (color[rowIndex][colIndex] == 'y'? '#EEE8AA': 'white')}}>
                   {isItGuesser ? (
                     <input 
                     type="text"
                     value={letter}
-                    style={{backgroundColor: color[rowIndex][colIndex] == 'g'? 'green': (color[rowIndex][colIndex] == 'y'? 'yellow': 'white')}}
+                    style={{backgroundColor: color[rowIndex][colIndex] == 'g'? '#52796F': (color[rowIndex][colIndex] == 'y'? '#EEE8AA': 'white'), border: "none"}}
                     onChange={(event) => handleInputChange(event, rowIndex, colIndex)}
                     onKeyDown={(event) => handleKeyDown(event, rowIndex, colIndex)}
                     ref={(ref) => {
@@ -345,7 +345,7 @@ export default function Wordle() {
         ) : null}
           <div id="chat_box" className="stats_scrollbar">
             {messages.map((message, index) => (
-              <p key={index}>{message.username}: {message.message}</p>
+              <div style={{width: "100%", height: "20px"}} key={index}>{message.username}: {message.message}</div>
             ))}
           </div>
           <form>
