@@ -24,6 +24,7 @@ export default function Wordle() {
   const [whichRow, setWhichRow] = useState(0);
   const [isItWinner, setIsItWinner] = useState(false);
   const [isItLoser, setIsItLoser] = useState(false);
+  const [lastColor, setLastColor] = useState('     ');
   
   if (!data) {
     return <Navigate to="/" />;
@@ -51,7 +52,6 @@ export default function Wordle() {
         console.log(data);
        
         if(data.role == 'selector'){
-          console.log("S E L E C T O R");
             setSelector(data.name);
             if (data.uid == user.uid){
               setIsItSelector(true);
@@ -60,21 +60,16 @@ export default function Wordle() {
             }
         }
         else if(data.role == 'guesser'){
-          console.log(" G U E S S E R");
             setGuesser(data.name);
-            console.log("data.uid == user.uid: ", data.uid == user.uid);
             if (data.uid == user.uid){
-              console.log('WESZLO GDZIE POWINNO');
               setIsItGuesser(true);
-              console.log("guesser: ", isItGuesser);
             }
             else {
-              console.log("WESZLO ZLE");
               setIsItGuesser(false);
             }
         }
-        console.log("selector: ", isItSelector, " guesser: ", isItGuesser, " data.role: ", data.role, " data.uid: ", data.uid, " user.uid: ", user.uid);
     };
+    
     channelRoleChange.bind('rolechange', handleNewRoleChange);
 
     const channelGuessMade = pusher.subscribe('guess-room-' + data.roomInfo.id);
@@ -84,28 +79,29 @@ export default function Wordle() {
         setWhichRow(data.row);
         const arr = data.word.split('');
         word[data.row] = arr;
-        console.log("K O L O R Y: ", data.colors);
+        setLastColor(data.colors);
         if(data.colors == "ggggg")
         {
-          console.log("W E S Z L O (guesser: ) ", isItGuesser, " (selector: ) ", isItSelector);
           if (isItGuesser){
             setIsItWinner(true);
-            console.log("WYGRAL AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+              if (isItWinner) {
+                console.log('Wygrałeś!');
+              }
           }
           if (isItSelector){
-            console.log("PRZEGRAL AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             setIsItLoser(true);
           }
         }
         else if(data.row == 5)
         {
           if (isItSelector){
-            console.log("WYGRAL AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             setIsItWinner(true);
           }
           if (isItGuesser){
-            console.log("PRZEGRAL AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
             setIsItLoser(true);
+            if (isItLoser) {
+              console.log('przegeales!');
+            }
           }
         }
         else
@@ -127,6 +123,29 @@ export default function Wordle() {
       pusher.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    console.log("guesser: ", isItGuesser);
+    console.log("O S T A T N I K O L O R: ", lastColor);
+    if (lastColor === 'ggggg'){
+      if (isItGuesser){
+        setIsItWinner(true);
+      }
+      if (isItSelector){
+        setIsItLoser(true);
+      }
+    }
+  }, [isItGuesser, lastColor]);
+
+  useEffect(() => {
+    if (isItLoser){
+      console.log("PRZEGRALES");
+    }
+    if (isItWinner){
+      console.log("WYGRALES");
+    }
+  }, [isItLoser, isItWinner])
+
   const handleInputChange = (event, row, col) => {
     if (row === activeCell.row && col === activeCell.col && word[row][col] === '') {
         const newWord = [...word];
@@ -273,11 +292,11 @@ export default function Wordle() {
         </aside>    
         <main id="wordle_main">
         {isItWinner ? (
-          <div style>WYGRALES</div>
+          <div style={{position: "absolute", alignSelf: "center", justifySelf: "center", width: "200px", height: "100px", backgroundColor: "green", border: "solid black 1px", display: "flex", justifyContent: "center", alignItems: "center"}}><img src="../assets/wygrana.png"/></div>
         ): null}
 
         {isItLoser ? (
-          <div>PRZEGRALES</div>
+          <div style={{position: "absolute"}}><img src="../assets/przegrana.png"/></div>
         ): null}
 
         <div className={`container${ visible ? ' wordle_form' : ' wordle_form_not_visible'}`}>
