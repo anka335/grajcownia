@@ -5,6 +5,8 @@ import Pusher from "pusher-js";
 import axios from "axios";
 import { UserAuth } from '../contexts/AuthContext';
 import { toLower } from "lodash";
+import przegrana from "../assets/przegrana.png";
+import wygrana from "../assets/wygrana.png";
 
 export default function Wordle() {
   const { user } = UserAuth();
@@ -285,20 +287,18 @@ export default function Wordle() {
     <div className="MP">
       <Header />
       <section id="game_section">
+      {isItLoser ? (
+          <div style={{position: "absolute", width: "500px", height: "100px", marginLeft: "15vw", marginTop: "15vh"}}><img src={przegrana} style={{width: "500px", height: "100px"}}/></div>
+        ): null}
+        {isItWinner ? (
+          <div style={{position: "absolute", width: "500px", height: "100px", marginLeft: "15vw", marginTop: "15vh"}}><img src={wygrana} style={{width: "700px", height: "100px"}}/></div>
+        ): null}
         <aside id="game_win">
           <div>
             zuzyte litery
           </div>
         </aside>    
         <main id="wordle_main">
-        {isItWinner ? (
-          <div style={{position: "absolute", alignSelf: "center", justifySelf: "center", width: "200px", height: "100px", backgroundColor: "green", border: "solid black 1px", display: "flex", justifyContent: "center", alignItems: "center"}}><img src="../assets/wygrana.png"/></div>
-        ): null}
-
-        {isItLoser ? (
-          <div style={{position: "absolute"}}><img src="../assets/przegrana.png"/></div>
-        ): null}
-
         <div className={`container${ visible ? ' wordle_form' : ' wordle_form_not_visible'}`}>
           <form onSubmit={handlePasswdSubmit} className="wordle_form" style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
             <input placeholder="podaj hasło" value={input} onInput={e => setInput(e.target.value)}/>
