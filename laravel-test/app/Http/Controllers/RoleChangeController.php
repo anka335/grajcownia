@@ -22,28 +22,25 @@ class RoleChangeController extends Controller
             {
                 $user = User::where('id', $room->selector_id)->first();
                 $uncheck = ($user->uid == $uid);
-                if($uncheck)
-                {
-                    event(new RoleChange($roomId, $role, "", null));
-                    Room::where('id', $roomId)->update(['selector_id' => null]);
-                    Room::where('id', $roomId)->update(['status' => 'inactive']);
-                    Room::where('id', $roomId)->update(['secret_word' => null]);
-                }
-                else
+                if(!$uncheck)
                     return response()->json(['error' => 'Rola jest już zajęta w tym pokoju'], 400);
+                    
+                event(new RoleChange($roomId, $role, "", null));
+                Room::where('id', $roomId)->update(['selector_id' => null]);
+                Room::where('id', $roomId)->update(['status' => 'inactive']);
+                Room::where('id', $roomId)->update(['secret_word' => null]);
             }
             else
             {
                 $user = User::where('uid', $uid)->first();
-                if($user)
-                {
-                    if($user->name)
-                        $name = $user->name;
-                    else
-                        $name = "Anon";
-                }
-                else
+                if(!$user)
                     return response()->json(['error' => 'Brak użytkownika o podanym uid w bazie danych'], 400);
+                
+                if($user->name)
+                    $name = $user->name;
+                else
+                    $name = "Anon";
+                
                 event(new RoleChange($roomId, $role, $name, $uid));
                 Room::where('id', $roomId)->update(['selector_id' => $user->id]);
 
@@ -56,31 +53,30 @@ class RoleChangeController extends Controller
             {
                 $user = User::where('id', $room->guesser_id)->first();
                 $uncheck = ($user->uid == $uid);
-                if($uncheck)
-                {
-                    event(new RoleChange($roomId, $role, "", null));
-                    Room::where('id', $roomId)->update(['guesser_id' => null]);
-                }
-                else
+                if(!$uncheck)
                     return response()->json(['error' => 'Rola jest już zajęta w tym pokoju'], 400);
+                event(new RoleChange($roomId, $role, "", null));
+                Room::where('id', $roomId)->update(['guesser_id' => null]);
             }
             else
             {
                 $user = User::where('uid', $uid)->first();
-                if($user)
-                {
-                    if($user->name)
-                        $name = $user->name;
-                    else
-                        $name = "Anon";
-                }
-                else
+                if(!$user)
                     return response()->json(['error' => 'Brak użytkownika o podanym uid w bazie danych'], 400);
+
+                if($user->name)
+                    $name = $user->name;
+                else
+                    $name = "Anon";
                 event(new RoleChange($roomId, $role, $name, $uid));
                 Room::where('id', $roomId)->update(['guesser_id' => $user->id]);
-                \Log::info($room->selector_id . " " . $room->secret_word);
                 if($room->selector_id && $room->secret_word)
+                {
                     Room::where('id', $roomId)->update(['status' => 'active']);
+                    Room::where('id', $roomId)->update(['guesses' => null]);
+                    Room::where('id', $roomId)->update(['colors' => null]);
+                    event(new guessMade("startowanko", null, $roomId, null));
+                }
             }
         }
         return [];
