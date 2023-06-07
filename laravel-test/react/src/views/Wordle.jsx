@@ -27,7 +27,8 @@ export default function Wordle() {
   const [isItWinner, setIsItWinner] = useState(false);
   const [isItLoser, setIsItLoser] = useState(false);
   const [lastColor, setLastColor] = useState('     ');
-  
+  const [lastWord, setLastWord] = useState(' ');
+
   if (!data) {
     return <Navigate to="/" />;
   }
@@ -76,12 +77,28 @@ export default function Wordle() {
 
     const channelGuessMade = pusher.subscribe('guess-room-' + data.roomInfo.id);
     const handleNewGuessMade = (data) => {
+        setLastWord(data.word);
+        if (data.word === "startowanko"){
+          setIsItLoser(false);
+          setIsItWinner(false);
+          setWhichRow(0);
+          setActiveCell({ row: 0, col: 0 });
+          setLastColor('');
+          setLastWord('');
+          setWord(Array.from({ length: 6 }, () => Array(5).fill('')));
+          setColor(Array.from({ length: 6 }, () => Array(5).fill('')));
+        } else {
         const c_arr = data.colors.split('');
-        color[data.row] = c_arr;
+        const newColor = [...color]; // Tworzenie nowej kopii tablicy color
+        newColor[data.row] = c_arr;
+        setColor(newColor);
         setWhichRow(data.row);
         const arr = data.word.split('');
-        word[data.row] = arr;
+        const newWord = [...word]; // Tworzenie nowej kopii tablicy word
+        newWord[data.row] = arr;
+        setWord(newWord);
         setLastColor(data.colors);
+        console.log("tablica kolorow: ", color, " ostatni kolor: ", lastColor);
         if(data.colors == "ggggg")
         {
           if (isItGuesser){
@@ -111,7 +128,7 @@ export default function Wordle() {
           setActiveCell({row: data.row + 1, col: 0});
           inputRefs.current[data.row + 1][0].focus();
         }
-
+      }
     };
     channelGuessMade.bind('guess', handleNewGuessMade);
 
@@ -137,7 +154,15 @@ export default function Wordle() {
         setIsItLoser(true);
       }
     }
-  }, [isItGuesser, lastColor]);
+    else if (whichRow === 5){
+      if (isItSelector){
+        setIsItWinner(true);
+      }
+      if (isItGuesser){
+        setIsItLoser(true);
+      }
+    }
+  }, [isItGuesser, lastColor, whichRow]);
 
   useEffect(() => {
     if (isItLoser){
