@@ -88,17 +88,23 @@ export default function Wordle() {
           setWord(Array.from({ length: 6 }, () => Array(5).fill('')));
           setColor(Array.from({ length: 6 }, () => Array(5).fill('')));
         } else {
-        const c_arr = data.colors.split('');
-        const newColor = [...color]; // Tworzenie nowej kopii tablicy color
-        newColor[data.row] = c_arr;
-        setColor(newColor);
+          const c_arr = data.colors.split('');
+          setColor((prevColor) =>
+            prevColor.map((row, rowIndex) =>
+              rowIndex < data.row ? row : rowIndex === data.row ? c_arr : Array(5).fill('')
+            )
+          );
+        
+          const arr = data.word.split('');
+          setWord((prevWord) =>
+            prevWord.map((row, rowIndex) =>
+              rowIndex < data.row ? row : rowIndex === data.row ? arr : Array(5).fill('')
+            )
+          );
+
         setWhichRow(data.row);
-        const arr = data.word.split('');
-        const newWord = [...word]; // Tworzenie nowej kopii tablicy word
-        newWord[data.row] = arr;
-        setWord(newWord);
         setLastColor(data.colors);
-        console.log("tablica kolorow: ", color, " ostatni kolor: ", lastColor);
+        setLastWord(data.word);
         if(data.colors == "ggggg")
         {
           if (isItGuesser){
@@ -172,6 +178,10 @@ export default function Wordle() {
       console.log("WYGRALES");
     }
   }, [isItLoser, isItWinner])
+
+  useEffect(() => {
+    console.log("tablica kolorow: ", color);
+  }, [color])
 
   const handleInputChange = (event, row, col) => {
     if (row === activeCell.row && col === activeCell.col && word[row][col] === '') {
