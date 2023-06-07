@@ -33,13 +33,20 @@ export default function Wordle() {
     return <Navigate to="/" />;
   }
   useEffect(() => {
+    //ustawianie informacji o pokoju po wejściu na stronę
     console.log(data);
+    setSelector(data.selector.name);
+    setGuesser(data.guesser.name);
+    const colors = data.roomInfo.colors.split(' ');
+    const NoWords = colors.length;
+    const colorsArr = [];
+    for(let i = 0; i < NoWords; ++i)
+        colorsArr.push(colors[i].split(''));
+    console.log(colorsArr);
     if (inputRefs.current[activeCell.row]) {
-        inputRefs.current[activeCell.row][activeCell.col].focus(); // Ustawienie focusu na pierwszym inputie po renderowaniu komponentu
-      }
+      inputRefs.current[activeCell.row][activeCell.col].focus(); // Ustawienie focusu na pierwszym inputie po renderowaniu komponentu
+    }
     Pusher.logToConsole = true;
-    setSelector(data.selectorName);
-    setGuesser(data.guesserName);
     const pusher = new Pusher('17fe7f4b4a52d62f2e3f', {
       cluster: 'eu'
     });

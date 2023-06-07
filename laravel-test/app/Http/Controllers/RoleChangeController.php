@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\RoleChange;
+use App\Events\guessMade;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\User;
@@ -24,7 +25,7 @@ class RoleChangeController extends Controller
                 $uncheck = ($user->uid == $uid);
                 if(!$uncheck)
                     return response()->json(['error' => 'Rola jest już zajęta w tym pokoju'], 400);
-                    
+
                 event(new RoleChange($roomId, $role, "", null));
                 Room::where('id', $roomId)->update(['selector_id' => null]);
                 Room::where('id', $roomId)->update(['status' => 'inactive']);

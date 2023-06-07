@@ -54,23 +54,31 @@ class RoomController extends Controller
         $guesser = User::where('id', $room->guesser_id)->first();
         if($selector)
         {
+            $s_uid = $selector->uid;
             if($selector->name)
                 $s_name = $selector->name;
             else
                 $s_name = "Anon";
         }
         else
+        {
+            $s_uid = null;
             $s_name = "";
+        }
         if($guesser)
         {
+            $s_uid = $guesser->uid;
             if($guesser->name)
                 $g_name = $guesser->name;
             else
                 $g_name = "Anon";
         }
         else
+        {
+            $s_uid = null;
             $g_name = "";
-        return response()->json(['roomInfo' => $room, 'selectorName' => $s_name, 'guesserName' => $g_name]);
+        }
+        return response()->json(['roomInfo' => $room, 'selector' => ['name' => $s_name, 'uid' => $selector->uid], 'guesser' => ['name' => $g_name, 'uid' => $guesser->uid]]);
     }
 
     /**
