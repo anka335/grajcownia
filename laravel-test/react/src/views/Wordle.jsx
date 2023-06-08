@@ -74,16 +74,31 @@ export default function Wordle() {
       setWord(wordArr);
       setWhichRow(wordArr.length);
       console.log("whichRow: ", whichRow);
+      setActiveCell({row: whichRow+2, col: 0});
+      setTimeout(() => {
+        if (inputRefs.current[whichRow+2] && inputRefs.current[whichRow+2][0]) {
+          inputRefs.current[whichRow+2][0].focus();
+          console.log(inputRefs.current[whichRow+2][0]);
+        }
+      }, 1000);
+      console.log(inputRefs.current.length);
     } else {
       setWord([['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','','']]);
       setWhichRow(0);
+      setActiveCell({row: 0, col: 0});
+      setTimeout(() => {
+        if (inputRefs.current[0] && inputRefs.current[0][0]) {
+          inputRefs.current[0][0].focus();
+        }
+      }, 1000);
     }
 
    
-
-    if (inputRefs.current[activeCell.row]) {
-      inputRefs.current[activeCell.row][activeCell.col].focus(); // Ustawienie focusu na pierwszym inputie po renderowaniu komponentu
-    }
+   
+    
+    //if (inputRefs.current[activeCell.row]) {
+    //  inputRefs.current[activeCell.row][activeCell.col].focus(); // Ustawienie focusu na pierwszym inputie po renderowaniu komponentu
+    //}
     Pusher.logToConsole = true;
     const pusher = new Pusher('17fe7f4b4a52d62f2e3f', {
       cluster: 'eu'
