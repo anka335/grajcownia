@@ -319,6 +319,7 @@ export default function Wordle() {
         }
       );
     setMessage('');
+    e.target.reset();
   };
 
   const handlePasswdSubmit = (e) => {
@@ -409,9 +410,9 @@ export default function Wordle() {
               <div style={{width: "100%", height: "20px"}} key={index}>{message.username}: {message.message}</div>
             ))}
           </div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <input type="text" onChange={(e) => setMessage(e.target.value)} />
-            <input type="button" value="wyślij" onClick={handleSubmit} />
+            <input type="submit" value="wyślij" style={{width: "80px", color:"#CAD2C5", backgroundColor: "#52796F", border: "none"}} />
           </form>
         </aside>
       </section>
