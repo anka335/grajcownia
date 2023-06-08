@@ -67,7 +67,7 @@ class RoomController extends Controller
         }
         if($guesser)
         {
-            $s_uid = $guesser->uid;
+            $g_uid = $guesser->uid;
             if($guesser->name)
                 $g_name = $guesser->name;
             else
@@ -75,10 +75,10 @@ class RoomController extends Controller
         }
         else
         {
-            $s_uid = null;
+            $g_uid = null;
             $g_name = "";
         }
-        return response()->json(['roomInfo' => $room, 'selector' => ['name' => $s_name, 'uid' => $selector->uid], 'guesser' => ['name' => $g_name, 'uid' => $guesser->uid]]);
+        return response()->json(['roomInfo' => $room, 'selector' => ['name' => $s_name, 'uid' => $s_uid], 'guesser' => ['name' => $g_name, 'uid' => $g_uid]]);
     }
 
     /**

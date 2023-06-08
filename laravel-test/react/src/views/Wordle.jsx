@@ -37,12 +37,50 @@ export default function Wordle() {
     console.log(data);
     setSelector(data.selector.name);
     setGuesser(data.guesser.name);
-    const colors = data.roomInfo.colors.split(' ');
-    const NoWords = colors.length;
-    const colorsArr = [];
-    for(let i = 0; i < NoWords; ++i)
-        colorsArr.push(colors[i].split(''));
-    console.log(colorsArr);
+
+    if (data.guesser.uid === user.uid){
+      setIsItGuesser(true);
+    }
+    if (data.selector.uid === user.uid){
+      setIsItSelector(true);
+    }
+    if (data.roomInfo.colors){
+      const colors = data.roomInfo.colors.split(' ');
+      const NoWords = colors.length;
+      const colorsArr = [];
+      for(let i = 0; i < NoWords; ++i)
+          colorsArr.push(colors[i].split(''));
+      setLastColor(colors[colors.length-1]);
+      console.log("lastcolor: ", lastColor);
+      for (let i = colorsArr.length; i < 6; ++i)
+          colorsArr.push(['','','','','']);
+      console.log("COLORSARR", colorsArr);
+      setColor(colorsArr);
+    } else {
+      setColor([['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','','']]);
+    }
+
+    if (data.roomInfo.guesses){  
+      const word = data.roomInfo.guesses.split(' ');
+      const NoWordsW = word.length;
+      const wordArr = [];
+      for(let i = 0; i < NoWordsW; ++i)
+          wordArr.push(word[i].split(''));
+      setLastWord(word[word.length-1]);
+      console.log("lastword: ", lastWord);
+      for (let i = wordArr.length; i < 6; ++i)
+          wordArr.push(['','','','','']);
+      console.log("WORDARR", wordArr);
+      setWord(wordArr);
+      setWhichRow(wordArr.length);
+      console.log("whichRow: ", whichRow);
+    } else {
+      setWord([['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','','']]);
+      setWhichRow(0);
+    }
+
+   
+
     if (inputRefs.current[activeCell.row]) {
       inputRefs.current[activeCell.row][activeCell.col].focus(); // Ustawienie focusu na pierwszym inputie po renderowaniu komponentu
     }
