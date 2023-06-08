@@ -60,12 +60,7 @@ export default function Signup(){
                     user.updateProfile({
                         displayName: nick
                     })
-                    // ...
-                    console.log('UID: ' + user.uid);
                     addUserToDatabase(user)
-                    console.log('Uzytkownik: ' + nick);
-                    console.log('Email: ' + email);
-                    console.log('Hasło: ' + password);
                 })
                 .catch((error) => {
                     var errorCode = error.code;
@@ -89,11 +84,10 @@ export default function Signup(){
           navigate('/guestlayout/mainguestpage')
           console.log('You are logged in anonymously')
           const anon = await firebase.auth().currentUser;
-          console.log(anon);
           addUserToDatabase(anon);
         } catch (e) {
           setError(e.message)
-          //console.log(e.message)
+          console.log(e.message)
         }
     }
 

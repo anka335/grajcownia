@@ -56,7 +56,6 @@ const router = createBrowserRouter([
                     return new Promise((resolve, reject) => {
                         firebase.auth().onAuthStateChanged(async (user) => {
                             if (user) {
-                                console.log("user: ", user);
                                 const gameURL = "http://127.0.0.1:8000/api/rooms/" + params.roomid;
                                 try {
                                     const response = await axios.get(gameURL);

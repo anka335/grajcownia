@@ -25,11 +25,9 @@ export default function Login() {
         setError('')
         try {
           await signIn(email, password)
-          //navigate('/mainuserpage')
-          console.log('You are logged in');
         } catch (e) {
           setError(e.message)
-          //console.log(e.message)
+          console.log(e.message)
         }
       };
 
@@ -60,13 +58,11 @@ export default function Login() {
           setNick("Anon");
           setEmail("Brak");
           navigate('/guestlayout/mainguestpage')
-          console.log('You are logged in anonymously')
           const anon = await firebase.auth().currentUser;
-          console.log(anon);
           addUserToDatabase(anon);
         } catch (e) {
           setError(e.message)
-          //console.log(e.message)
+          console.log(e.message)
         }
       }
 

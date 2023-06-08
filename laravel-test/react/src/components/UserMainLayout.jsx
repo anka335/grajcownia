@@ -18,7 +18,6 @@ export default function UserMainLayout() {
     const onLogout = async () => {
         try {
             await logout();
-            //console.log('You are logged out')
         } catch (e) {
             console.log(e.message);
         }

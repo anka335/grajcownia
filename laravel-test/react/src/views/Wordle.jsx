@@ -34,7 +34,6 @@ export default function Wordle() {
   }
   useEffect(() => {
     //ustawianie informacji o pokoju po wejściu na stronę
-    console.log(data);
     setSelector(data.selector.name);
     setGuesser(data.guesser.name);
 
@@ -51,10 +50,8 @@ export default function Wordle() {
       for(let i = 0; i < NoWords; ++i)
           colorsArr.push(colors[i].split(''));
       setLastColor(colors[colors.length-1]);
-      console.log("lastcolor: ", lastColor);
       for (let i = colorsArr.length; i < 6; ++i)
           colorsArr.push(['','','','','']);
-      console.log("COLORSARR", colorsArr);
       setColor(colorsArr);
     } else {
       setColor([['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','','']]);
@@ -67,21 +64,16 @@ export default function Wordle() {
       for(let i = 0; i < NoWordsW; ++i)
           wordArr.push(word[i].split(''));
       setLastWord(word[word.length-1]);
-      console.log("lastword: ", lastWord);
       for (let i = wordArr.length; i < 6; ++i)
           wordArr.push(['','','','','']);
-      console.log("WORDARR", wordArr);
       setWord(wordArr);
       setWhichRow(wordArr.length);
-      console.log("whichRow: ", whichRow);
       setActiveCell({row: whichRow+2, col: 0});
       setTimeout(() => {
         if (inputRefs.current[whichRow+2] && inputRefs.current[whichRow+2][0]) {
           inputRefs.current[whichRow+2][0].focus();
-          console.log(inputRefs.current[whichRow+2][0]);
         }
       }, 1000);
-      console.log(inputRefs.current.length);
     } else {
       setWord([['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','','']]);
       setWhichRow(0);
@@ -112,7 +104,6 @@ export default function Wordle() {
 
     const channelRoleChange = pusher.subscribe('role-room-' + data.roomInfo.id);
     const handleNewRoleChange = (data) => {
-        console.log(data);
        
         if(data.role == 'selector'){
             setSelector(data.name);
@@ -169,9 +160,6 @@ export default function Wordle() {
         {
           if (isItGuesser){
             setIsItWinner(true);
-              if (isItWinner) {
-                console.log('Wygrałeś!');
-              }
           }
           if (isItSelector){
             setIsItLoser(true);
@@ -184,9 +172,6 @@ export default function Wordle() {
           }
           if (isItGuesser){
             setIsItLoser(true);
-            if (isItLoser) {
-              console.log('przegeales!');
-            }
           }
         }
         else
@@ -210,8 +195,6 @@ export default function Wordle() {
   }, []);
 
   useEffect(() => {
-    console.log("guesser: ", isItGuesser);
-    console.log("O S T A T N I K O L O R: ", lastColor);
     if (lastColor === 'ggggg'){
       if (isItGuesser){
         setIsItWinner(true);
@@ -230,19 +213,6 @@ export default function Wordle() {
     }
   }, [isItGuesser, lastColor, whichRow]);
 
-  useEffect(() => {
-    if (isItLoser){
-      console.log("PRZEGRALES");
-    }
-    if (isItWinner){
-      console.log("WYGRALES");
-    }
-  }, [isItLoser, isItWinner])
-
-  useEffect(() => {
-    console.log("tablica kolorow: ", color);
-  }, [color])
-
   const handleInputChange = (event, row, col) => {
     if (row === activeCell.row && col === activeCell.col && word[row][col] === '') {
         const newWord = [...word];
@@ -260,7 +230,6 @@ export default function Wordle() {
     if (event.key === 'Enter' && activeCell.col == 4 && word[row][col] != '') {
       // Obsługa wysyłania zapytania na serwer po wciśnięciu Enter
       const guess = toLower(word[activeCell.row].join('')); // Konwersja tablicy liter na string
-      console.log('Wysyłanie zapytania na serwer:', guess);
       const response = axios.post(
         'http://127.0.0.1:8000/api/guess',
         {
@@ -275,7 +244,6 @@ export default function Wordle() {
                 'Content-Type': 'application/json'
               }
         });
-        console.log(response);
     }
     else if(event.key === 'Backspace' && row === activeCell.row && col === activeCell.col)
     {
@@ -314,7 +282,6 @@ export default function Wordle() {
             'Content-Type': 'application/json'
           }
     });
-    console.log(response);
   };
 
   const handleSetGuesser = () => {
@@ -337,7 +304,6 @@ export default function Wordle() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data.roomInfo.id);
     axios.post(
         'http://127.0.0.1:8000/api/messages',
         {

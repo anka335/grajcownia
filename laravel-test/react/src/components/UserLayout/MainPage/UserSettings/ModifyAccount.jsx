@@ -8,21 +8,6 @@ import { reauthenticateWithCredential } from "firebase/auth";
 
 export default function ModifyAccount(){
       const [error, setError] = useState('');
-      //const credential = promptForCredentials();
-      //const { user } = UserAuth();
-
-    /*const handleDelete = async (e) => {
-        e.preventDefault();
-        setError('')
-        try {
-          await reauthenticate(user, credential);
-          //navigate('/guestlayout/mainguestpage')
-          console.log('konto zostalo ponownie zautoryzowane')
-        } catch (e) {
-          setError(e.message)
-          //console.log(e.message)
-        }
-    }*/
 
     return(
         <div id="ModifyAccount">

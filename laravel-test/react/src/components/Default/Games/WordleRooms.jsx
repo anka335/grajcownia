@@ -48,7 +48,6 @@ export default function WordleRooms(){
                     'Content-Type': 'application/json'
                 }
             });
-            console.log('room: ', roomName);
         } catch (error) {
             console.error('Błąd podczas dodawania użytkownika do bazy danych:', error);
         }
