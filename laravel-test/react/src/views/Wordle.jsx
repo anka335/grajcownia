@@ -58,7 +58,7 @@ export default function Wordle() {
     }
 
     if (data.roomInfo.guesses){  
-      const word = data.roomInfo.guesses.split(' ');
+      const word = data.roomInfo.guesses.toUpperCase().split(' ');
       const NoWordsW = word.length;
       const wordArr = [];
       for(let i = 0; i < NoWordsW; ++i)
@@ -68,10 +68,10 @@ export default function Wordle() {
           wordArr.push(['','','','','']);
       setWord(wordArr);
       setWhichRow(wordArr.length);
-      setActiveCell({row: whichRow+2, col: 0});
+      setActiveCell({row: whichRow+1, col: 0});
       setTimeout(() => {
-        if (inputRefs.current[whichRow+2] && inputRefs.current[whichRow+2][0]) {
-          inputRefs.current[whichRow+2][0].focus();
+        if (inputRefs.current[whichRow+1] && inputRefs.current[whichRow+1][0]) {
+          inputRefs.current[whichRow+1][0].focus();
         }
       }, 1000);
     } else {
@@ -146,7 +146,7 @@ export default function Wordle() {
             )
           );
         
-          const arr = data.word.split('');
+          const arr = data.word.toUpperCase().split('');
           setWord((prevWord) =>
             prevWord.map((row, rowIndex) =>
               rowIndex < data.row ? row : rowIndex === data.row ? arr : Array(5).fill('')
