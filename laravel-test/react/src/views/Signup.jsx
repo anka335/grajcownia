@@ -29,10 +29,11 @@ export default function Signup(){
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const { anonymousSignIn } = UserAuth();
+    const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
     async function addUserToDatabase(user) {
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/users', {
+            const response = await axios.post(apiBaseUrl + '/users', {
                 name: nick,
                 email: email,
                 uid: user.uid

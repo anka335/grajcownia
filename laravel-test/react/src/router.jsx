@@ -41,36 +41,31 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "./contexts/AuthContext.jsx";
 import firebase from 'firebase/compat/app';
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
-const baseURL = "http://127.0.0.1:8000/api/rooms";
-
-/*const testRoutes = post.map((room) => ({
-    path: `/testroom/${room.id}`,
-    element: <Wordle />,
-  }));*/
 
 const router = createBrowserRouter([
         {
-                path: "/testroom/:roomid",
-                loader: async ({request, params}) => {
-                    return new Promise((resolve, reject) => {
-                        firebase.auth().onAuthStateChanged(async (user) => {
-                            if (user) {
-                                const gameURL = "http://127.0.0.1:8000/api/rooms/" + params.roomid;
-                                try {
-                                    const response = await axios.get(gameURL);
-                                    const data = response.data;
-                                    resolve(data);
-                                } catch (error) {
-                                    reject(error);
-                                }
-                            } else {
-                                resolve(<Navigate to="/starterpage" />);
+            path: "/testroom/:roomid",
+            loader: async ({request, params}) => {
+                return new Promise((resolve, reject) => {
+                    firebase.auth().onAuthStateChanged(async (user) => {
+                        if (user) {
+                            const gameURL = apiBaseUrl + "/rooms/" + params.roomid;
+                            try {
+                                const response = await axios.get(gameURL);
+                                const data = response.data;
+                                resolve(data);
+                            } catch (error) {
+                                reject(error);
                             }
-                        });
+                        } else {
+                            resolve(<Navigate to="/starterpage" />);
+                        }
                     });
-                },
-                element: <Wordle/>
+                });
+            },
+            element: <Wordle/>
         },
         {
             path: '/',

@@ -27,6 +27,7 @@ export default function Wordle() {
   const [lastWord, setLastWord] = useState(' ');
   const inputRefs = useRef([]); // Referencje do inputów tekstowych
   const data = useLoaderData();
+  const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
   if (!data) {
     return <Navigate to="/" />;
@@ -226,7 +227,7 @@ export default function Wordle() {
       // Obsługa wysyłania zapytania na serwer po wciśnięciu Enter
       const guess = toLower(word[activeCell.row].join('')); // Konwersja tablicy liter na string
       const response = axios.post(
-        'http://127.0.0.1:8000/api/guess',
+        apiBaseUrl + '/guess',
         {
           uid: user.uid,
           word: guess,
@@ -265,7 +266,7 @@ export default function Wordle() {
     //if (selector != '')
       //return;
     const response = axios.post(
-    'http://127.0.0.1:8000/api/roles',
+    apiBaseUrl + '/roles',
     {
       role: "selector",
       roomId: data.roomInfo.id,
@@ -283,7 +284,7 @@ export default function Wordle() {
     //if (guesser != '' && guesser)
       //return;
     axios.post(
-    'http://127.0.0.1:8000/api/roles',
+    apiBaseUrl + '/roles',
     {
       role: "guesser",
       roomId: data.roomInfo.id,
@@ -300,7 +301,7 @@ export default function Wordle() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     axios.post(
-        'http://127.0.0.1:8000/api/messages',
+        apiBaseUrl + '/messages',
         {
           message: message,
           roomId: data.roomInfo.id,
@@ -322,7 +323,7 @@ export default function Wordle() {
     const passwd = input;
     setVisible(false);
     axios.post(
-      'http://127.0.0.1:8000/api/secret',
+      apiBaseUrl + '/secret',
       {
         uid: user.uid,
         secret: passwd,

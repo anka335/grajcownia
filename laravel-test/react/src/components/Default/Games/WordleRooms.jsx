@@ -16,7 +16,7 @@ function Form(isVisible){
     return <div className={`container${ isVisible ? ' wordle_form' : ' wordle_form_not_visible'}`}>aa</div>
 }
 
-const baseURL = "http://127.0.0.1:8000/api/rooms";
+const baseURL = import.meta.env.VITE_API_BASE_URL + "/rooms";
 
 
 export const usePost = (post) => {
@@ -89,10 +89,3 @@ export default function WordleRooms(){
             </div>
         )
 }
-/*try {
-    const response = axios.get('http://127.0.0.1:8000/api/rooms', {
-        headers: {
-          'Key': 'Accept',
-          'Content-Type': 'application/json'
-        }
-      });*/
