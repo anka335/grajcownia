@@ -21,13 +21,12 @@ export default function Wordle() {
   const [activeCell, setActiveCell] = useState({ row: 0, col: 0 });
   const [input, setInput] = useState('');
   const [color, setColor] = useState(Array(6).fill(Array(5).fill('')));
-  const inputRefs = useRef([]); // Referencje do inputów tekstowych
-  const data = useLoaderData();
-  const [whichRow, setWhichRow] = useState(0);
   const [isItWinner, setIsItWinner] = useState(false);
   const [isItLoser, setIsItLoser] = useState(false);
   const [lastColor, setLastColor] = useState('     ');
   const [lastWord, setLastWord] = useState(' ');
+  const inputRefs = useRef([]); // Referencje do inputów tekstowych
+  const data = useLoaderData();
 
   if (!data) {
     return <Navigate to="/" />;
@@ -60,6 +59,7 @@ export default function Wordle() {
     if (data.roomInfo.guesses){  
       const word = data.roomInfo.guesses.toUpperCase().split(' ');
       const NoWordsW = word.length;
+      //console.log(NoWordsW);
       const wordArr = [];
       for(let i = 0; i < NoWordsW; ++i)
           wordArr.push(word[i].split(''));
@@ -67,16 +67,14 @@ export default function Wordle() {
       for (let i = wordArr.length; i < 6; ++i)
           wordArr.push(['','','','','']);
       setWord(wordArr);
-      setWhichRow(wordArr.length);
-      setActiveCell({row: whichRow+1, col: 0});
+      setActiveCell({row: NoWordsW, col: 0});
       setTimeout(() => {
-        if (inputRefs.current[whichRow+1] && inputRefs.current[whichRow+1][0]) {
-          inputRefs.current[whichRow+1][0].focus();
+        if (inputRefs.current[NoWordsW] && inputRefs.current[NoWordsW][0]) {
+          inputRefs.current[NoWordsW][0].focus();
         }
       }, 1000);
     } else {
       setWord([['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','',''],['','','','','']]);
-      setWhichRow(0);
       setActiveCell({row: 0, col: 0});
       setTimeout(() => {
         if (inputRefs.current[0] && inputRefs.current[0][0]) {
@@ -91,7 +89,7 @@ export default function Wordle() {
     //if (inputRefs.current[activeCell.row]) {
     //  inputRefs.current[activeCell.row][activeCell.col].focus(); // Ustawienie focusu na pierwszym inputie po renderowaniu komponentu
     //}
-    Pusher.logToConsole = true;
+    Pusher.logToConsole = false;
     const pusher = new Pusher('17fe7f4b4a52d62f2e3f', {
       cluster: 'eu'
     });
@@ -132,7 +130,6 @@ export default function Wordle() {
         if (data.word === "startowanko"){
           setIsItLoser(false);
           setIsItWinner(false);
-          setWhichRow(0);
           setActiveCell({ row: 0, col: 0 });
           setLastColor('');
           setLastWord('');
@@ -152,8 +149,6 @@ export default function Wordle() {
               rowIndex < data.row ? row : rowIndex === data.row ? arr : Array(5).fill('')
             )
           );
-
-        setWhichRow(data.row);
         setLastColor(data.colors);
         setLastWord(data.word);
         if(data.colors == "ggggg")
@@ -203,7 +198,7 @@ export default function Wordle() {
         setIsItLoser(true);
       }
     }
-    else if (whichRow === 5){
+    else if (activeCell.row === 5){
       if (isItSelector){
         setIsItWinner(true);
       }
@@ -211,7 +206,7 @@ export default function Wordle() {
         setIsItLoser(true);
       }
     }
-  }, [isItGuesser, lastColor, whichRow]);
+  }, [isItGuesser, lastColor]);
 
   const handleInputChange = (event, row, col) => {
     if (row === activeCell.row && col === activeCell.col && word[row][col] === '') {
