@@ -1,7 +1,6 @@
 import axios from "axios";
 import React from "react";
-
-const baseURL = "http://127.0.0.1:8000/api/rooms";
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 
 export default function Example() {
   const [post, setPost] = React.useState(null);

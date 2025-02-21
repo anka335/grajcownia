@@ -9,6 +9,7 @@ import 'firebase/compat/auth';
 import { set } from 'lodash';
 import { auth } from '../firebase.jsx';
 
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 export default function Login() {
 
       const [email, setEmail] = useState('');
@@ -33,7 +34,7 @@ export default function Login() {
 
       async function addUserToDatabase(user) {
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/users', {
+            const response = await axios.post(baseURL + '/users', {
                 name: nick,
                 email: email,
                 uid: user.uid

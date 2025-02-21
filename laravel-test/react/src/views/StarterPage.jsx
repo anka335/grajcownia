@@ -10,6 +10,7 @@ import axios from 'axios';
 import { set } from 'lodash';
 import { auth } from '../firebase.jsx';
 
+const baseURL = import.meta.env.VITE_API_BASE_URL;
 const SignupLink = styled(StyledLink)`
   margin-left: 3px;
 `;
@@ -27,7 +28,7 @@ export default function MainPage(){
 
     async function addUserToDatabase(user) {
       try {
-          const response = await axios.post('http://127.0.0.1:8000/api/users', {
+          const response = await axios.post(baseURL + '/users', {
               name: nick,
               email: email,
               uid: user.uid
