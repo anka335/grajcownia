@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Room extends Model
 {
     use HasFactory;
+    protected $hidden = [
+        'secret_word',
+        'guesser_id',
+        'selector_id',
+        'created_at',
+        'updated_at',
+    ];
     protected $fillable = [
         'name',
         'description',

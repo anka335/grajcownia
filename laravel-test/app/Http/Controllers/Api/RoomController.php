@@ -17,6 +17,8 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = Room::all();
+        $rooms = $rooms->toArray();
+
         return response()->json($rooms);
     }
 
@@ -67,7 +69,7 @@ class RoomController extends Controller
         }
         if($guesser)
         {
-            $g_uid = $guesser->uid;
+            $g_uid = $guesser->uid; 
             if($guesser->name)
                 $g_name = $guesser->name;
             else
@@ -78,7 +80,9 @@ class RoomController extends Controller
             $g_uid = null;
             $g_name = "";
         }
-        return response()->json(['roomInfo' => $room, 'selector' => ['name' => $s_name, 'uid' => $s_uid], 'guesser' => ['name' => $g_name, 'uid' => $g_uid]]);
+        $excludeKeys = ["created_at", "updated_at"];
+        $roomInfo = array_diff_key($room->toArray(), array_flip($excludeKeys));
+        return response()->json(['roomInfo' => $roomInfo, 'selector' => ['name' => $s_name], 'guesser' => ['name' => $g_name]]);
     }
 
     /**
