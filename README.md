@@ -1,6 +1,10 @@
 # Grajcownia
 online games website created by anka335 and Jędrzej Kolski
 
+# Play now!
+Thanks to the mikr.us team for providing free VPS servers!<br>
+[frog02-21693.wykr.es](https://frog02-21693.wykr.es/)
+
 # About Us
 Grajcownia is a project created with the intention of providing online gaming enthusiasts a place, where they can enjoy real-time gameplay. Our platform is designed for user-friendliness and accessibility, allowing gamers to play various games and communicate with other gamers.
 
